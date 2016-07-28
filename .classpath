@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="src/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="src/mysql-connector-java-5.1.22-bin.jar"/>
+	<classpathentry kind="lib" path="src/poi-3.8.jar"/>
+	<classpathentry kind="lib" path="src/poi-3.9.jar"/>
+	<classpathentry kind="lib" path="src/poi-ooxml-3.8.jar"/>
+	<classpathentry kind="lib" path="src/poi-ooxml-schemas-3.8-20120326.jar"/>
+	<classpathentry kind="lib" path="src/poi-3.8-sources.jar"/>
+	<classpathentry kind="lib" path="src/opencsv-2.3.jar"/>
+	<classpathentry kind="lib" path="src/xmlbeans-2.3.0.jar"/>
+	<classpathentry kind="lib" path="src/jxl-2.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
