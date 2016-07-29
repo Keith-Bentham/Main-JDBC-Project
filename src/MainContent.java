@@ -44,37 +44,27 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	String command3 = null;
 	String command4 = null;
 	String command5 = null;
-	String s = null;
-	String b = null;
-	String m = null;
-	String eg = null;
-	String bn = null;
-	String wp = null;
-	String bp = null;
-	String t = null;
-	String c = null;
-	String tt = null;
-	String tx = null;
-	String irn = null;
-	String bk = null;
-	String wc = null;
+	
+	String taxiString = null;
+	String ironString = null;
+	String breakfastString = null;
+	String wakecallString = null;
 
-	private Connection con = null;
-	private Statement stmt = null;
-	private ResultSet rs = null;
+	private Connection databaseConnection = null;
+	private Statement sqlStatement = null;
+	private ResultSet databaseResultSet = null;
 
-	private Container content;
+	private Container contentContainer;
 
 	private JPanel detailsPanel;
 	private JPanel vacanciesPanel;
-	private JPanel checkOutDetailsPanel;
+	private JPanel checkOutPanel;
 	private JPanel controlPanel;
 	private JPanel custServPanel;
-	private JPanel amenitiesPanel;
+	private JPanel servicesPanel;
 	private JPanel custServGroupPanel;
-	private JPanel dbPanel;
-	private JScrollPane dbContentsPanel1;
-	private JScrollPane dbContentsPanel2;
+	private JPanel databasePanal;
+	private JScrollPane dbContentsPanel1; 
 	private JScrollPane dbContentsPanel3;
 	private JScrollPane dbContentsPanel4;
 
@@ -95,7 +85,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JLabel TownLabel = new JLabel("Town:");
 	private JLabel contactNoLabel = new JLabel("Contact Num:");
 	private JLabel enterRoomNo = new JLabel("Select Room Number:");
-	private JLabel amenitiesLabel = new JLabel("Extra Service:");
+	private JLabel servicesLabel = new JLabel("Extra Service:");
 	private JLabel blankLabel = new JLabel(" 			");
 	
 	private JLabel checkRoomLabel = new JLabel("Room:");
@@ -141,9 +131,9 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JButton homeButton = new JButton("Home");
 	private JButton checkInButton = new JButton("Check In");
 	private JButton checkOutButton = new JButton("Check Out");
-	private JButton custServButton = new JButton("Customer Services");
+	private JButton servicesButton = new JButton("Customer Services");
 
-	private JButton vacCheckButton = new JButton("Check For Vacancies");
+	private JButton vacanciesCheckButton = new JButton("Check For Vacancies");
 	private JButton checkOutConfirmButton = new JButton("Confirm");
 	private JButton checkOutSearchButton = new JButton("Search");
 
@@ -209,39 +199,39 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		setEnabled(true);
 
 		initiate_db_conn();
-		content = getContentPane();
-		content.setLayout(null);
-		content.setBackground(backgroundColorGray);
+		contentContainer = getContentPane();
+		contentContainer.setLayout(null);
+		contentContainer.setBackground(backgroundColorGray);
 
 		homeButton.setBackground(fontColorYellow);
 		checkInButton.setBackground(fontColorYellow);
 		checkOutButton.setBackground(fontColorYellow);
-		custServButton.setBackground(fontColorYellow);
+		servicesButton.setBackground(fontColorYellow);
 
 		homeButton.setLocation(0, 3);
 		checkInButton.setLocation(153, 3);
 		checkOutButton.setLocation(306, 3);
-		custServButton.setLocation(456, 3);
+		servicesButton.setLocation(456, 3);
 
 		homeButton.setSize(150, 30);
 		checkInButton.setSize(150, 30);
 		checkOutButton.setSize(150, 30);
-		custServButton.setSize(190, 30);
+		servicesButton.setSize(190, 30);
 
 		homeButton.setFont(f1);
 		checkInButton.setFont(f1);
 		checkOutButton.setFont(f1);
-		custServButton.setFont(f1);
+		servicesButton.setFont(f1);
 
 		homeButton.addActionListener(this);
 		checkInButton.addActionListener(this);
 		checkOutButton.addActionListener(this);
-		custServButton.addActionListener(this);
+		servicesButton.addActionListener(this);
 
-		content.add(homeButton);
-		content.add(checkInButton);
-		content.add(checkOutButton);
-		content.add(custServButton);
+		contentContainer.add(homeButton);
+		contentContainer.add(checkInButton);
+		contentContainer.add(checkOutButton);
+		contentContainer.add(servicesButton);
 
 		lineBorder = BorderFactory.createEtchedBorder(fontColorYellow, fontColorYellow);
 
@@ -261,17 +251,17 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		Customer.addActionListener(listener);
 		Amine.addActionListener(listener);
 
-		dbPanel = new JPanel();
-		dbPanel.setLayout(new GridLayout(1, 4));
-		dbPanel.setBackground(backgroundColorGray);
-		dbPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Choose Database"));
-		dbPanel.add(Room);
-		dbPanel.add(Customer);
-		dbPanel.add(Amine);
-		dbPanel.setSize(600, 50);
-		dbPanel.setLocation(475, 33);
-		dbPanel.setVisible(false);
-		content.add(dbPanel);
+		databasePanal = new JPanel();
+		databasePanal.setLayout(new GridLayout(1, 4));
+		databasePanal.setBackground(backgroundColorGray);
+		databasePanal.setBorder(BorderFactory.createTitledBorder(lineBorder, "Choose Database"));
+		databasePanal.add(Room);
+		databasePanal.add(Customer);
+		databasePanal.add(Amine);
+		databasePanal.setSize(600, 50);
+		databasePanal.setLocation(475, 33);
+		databasePanal.setVisible(false);
+		contentContainer.add(databasePanal);
 
 		vacanciesRoomLabel.setFont(f1);
 		vacanciesResRoomLabel.setFont(f1);
@@ -300,9 +290,9 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		vacanciesPanel.setSize(300, 200);
 		vacanciesPanel.setLocation(450, 70);
 		vacanciesPanel.setVisible(false);
-		content.add(vacanciesPanel);
+		contentContainer.add(vacanciesPanel);
 
-		vacCheckButton.setFont(f1);
+		vacanciesCheckButton.setFont(f1);
 		A.setFont(f1);
 		B.setFont(f1);
 		C.setFont(f1);
@@ -326,9 +316,9 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 		controlPanel = new JPanel();
 		controlPanel.setLayout(new FlowLayout());
-		vacCheckButton.setBackground(fontColorYellow);
-		vacCheckButton.setSize(200, 30);
-		controlPanel.add(vacCheckButton);
+		vacanciesCheckButton.setBackground(fontColorYellow);
+		vacanciesCheckButton.setSize(200, 30);
+		controlPanel.add(vacanciesCheckButton);
 		controlPanel.add(X);
 		controlPanel.add(A);
 		controlPanel.add(B);
@@ -338,9 +328,9 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		controlPanel.setSize(600, 100);
 		controlPanel.setLocation(300, 300);
 		controlPanel.setVisible(false);
-		content.add(controlPanel);
+		contentContainer.add(controlPanel);
 
-		vacCheckButton.addActionListener(this);
+		vacanciesCheckButton.addActionListener(this);
 		
 		yes1.setFont(f1);
 		no1.setFont(f1);
@@ -371,18 +361,18 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		amenitiesGroup.add(yes1);
 		amenitiesGroup.add(no1);
 
-		amenitiesPanel = new JPanel();
-		amenitiesPanel.setLayout(new GridLayout(4, 1));
-		amenitiesPanel.setBackground(backgroundColorGray);
-		amenitiesPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Extra Service"));
-		amenitiesPanel.add(taxi);
-		amenitiesPanel.add(iron);
-		amenitiesPanel.add(wakeupCall);
-		amenitiesPanel.add(brecky);
-		amenitiesPanel.setSize(170, 250);
-		amenitiesPanel.setLocation(3, 35);
-		amenitiesPanel.setVisible(false);
-		content.add(amenitiesPanel);
+		servicesPanel = new JPanel();
+		servicesPanel.setLayout(new GridLayout(4, 1));
+		servicesPanel.setBackground(backgroundColorGray);
+		servicesPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Extra Service"));
+		servicesPanel.add(taxi);
+		servicesPanel.add(iron);
+		servicesPanel.add(wakeupCall);
+		servicesPanel.add(brecky);
+		servicesPanel.setSize(170, 250);
+		servicesPanel.setLocation(3, 35);
+		servicesPanel.setVisible(false);
+		contentContainer.add(servicesPanel);
 		
 		RoomLabel.setFont(f1);
 		FirstNameLabel.setFont(f1);
@@ -392,7 +382,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		TownLabel.setFont(f1);
 		contactNoLabel.setFont(f1);
 		enterRoomNo.setFont(f1);
-		amenitiesLabel.setFont(f1);
+		servicesLabel.setFont(f1);
 		confirmButton.setFont(f1);
 		updateButton.setFont(f1);
 		deleteButton.setFont(f1);
@@ -414,7 +404,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		TownLabel.setForeground(fontColorYellow);
 		contactNoLabel.setForeground(fontColorYellow);
 		enterRoomNo.setForeground(fontColorYellow);
-		amenitiesLabel.setForeground(fontColorYellow);
+		servicesLabel.setForeground(fontColorYellow);
 
 		confirmButton.setBackground(fontColorYellow);
 		updateButton.setBackground(fontColorYellow);
@@ -447,7 +437,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		detailsPanel.add(contactNoLabel);
 		detailsPanel.add(contactNoTF);
 		detailsPanel.add(blankLabel);  
-		detailsPanel.add(amenitiesLabel);
+		detailsPanel.add(servicesLabel);
 		
 		
 		detailsPanel.add(yes1); 
@@ -461,7 +451,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		detailsPanel.setSize(300, 347);
 		detailsPanel.setLocation(177, 35);
 		detailsPanel.setVisible(false);
-		content.add(detailsPanel);
+		contentContainer.add(detailsPanel);
 
 		confirmButton.addActionListener(this);
 		updateButton.addActionListener(this);
@@ -490,7 +480,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		dbContentsPanel1.setVisible(false);
 		dbContentsPanel1.setSize(700, 300);
 		dbContentsPanel1.setLocation(477, 80);
-		content.add(dbContentsPanel1);
+		contentContainer.add(dbContentsPanel1);
 
 		TableofDBContentsAmine.setPreferredScrollableViewportSize(new Dimension(300, 600));
 		dbContentsPanel3 = new JScrollPane(TableofDBContentsAmine, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -500,7 +490,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		dbContentsPanel3.setVisible(false);
 		dbContentsPanel3.setSize(700, 300);
 		dbContentsPanel3.setLocation(477, 80);
-		content.add(dbContentsPanel3);
+		contentContainer.add(dbContentsPanel3);
 
 		TableofDBContentsRoom.setPreferredScrollableViewportSize(new Dimension(300, 600));
 		dbContentsPanel4 = new JScrollPane(TableofDBContentsRoom, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -510,7 +500,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		dbContentsPanel4.setVisible(false);
 		dbContentsPanel4.setSize(700, 300);
 		dbContentsPanel4.setLocation(477, 80);
-		content.add(dbContentsPanel4);
+		contentContainer.add(dbContentsPanel4);
 		
 		checkRoomLabel.setFont(f1);
 		resRoomLabel.setFont(f1);
@@ -556,34 +546,34 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		checkOutConfirmButton.setBackground(fontColorYellow);
 		checkOutSearchButton.setBackground(fontColorYellow);
 
-		checkOutDetailsPanel = new JPanel();
-		checkOutDetailsPanel.setLayout(new GridLayout(10, 2));
-		checkOutDetailsPanel.setBackground(backgroundColorGray);
-		checkOutDetailsPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "CUSTOMER CHECKOUT DETAILS"));
-		checkOutDetailsPanel.add(checkRoomLabel);
-		checkOutDetailsPanel.add(resRoomLabel);
-		checkOutDetailsPanel.add(checkFirstNameLabel);
-		checkOutDetailsPanel.add(resFirstNameLabel);
-		checkOutDetailsPanel.add(checkLastNameLabel);
-		checkOutDetailsPanel.add(resLastNameLabel);
-		checkOutDetailsPanel.add(checkAddress1Label);
-		checkOutDetailsPanel.add(resAddress1Label);
-		checkOutDetailsPanel.add(checkTownLabel);
-		checkOutDetailsPanel.add(resTownLabel);
-		checkOutDetailsPanel.add(checkcontactNoLabel);
-		checkOutDetailsPanel.add(rescontactNoLabel);
-		checkOutDetailsPanel.add(checkRoomTypeLabel);
-		checkOutDetailsPanel.add(resRoomTypeLabel);
-		checkOutDetailsPanel.add(checkRoomPriceLabel);
-		checkOutDetailsPanel.add(resRoomPriceLabel);
-		checkOutDetailsPanel.add(enterRoomNo);
-		checkOutDetailsPanel.add(myRoomCB);
-		checkOutDetailsPanel.add(checkOutSearchButton);
-		checkOutDetailsPanel.add(checkOutConfirmButton);
-		checkOutDetailsPanel.setSize(400, 400);
-		checkOutDetailsPanel.setLocation(400, 50);
-		checkOutDetailsPanel.setVisible(false);
-		content.add(checkOutDetailsPanel);
+		checkOutPanel = new JPanel();
+		checkOutPanel.setLayout(new GridLayout(10, 2));
+		checkOutPanel.setBackground(backgroundColorGray);
+		checkOutPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "CUSTOMER CHECKOUT DETAILS"));
+		checkOutPanel.add(checkRoomLabel);
+		checkOutPanel.add(resRoomLabel);
+		checkOutPanel.add(checkFirstNameLabel);
+		checkOutPanel.add(resFirstNameLabel);
+		checkOutPanel.add(checkLastNameLabel);
+		checkOutPanel.add(resLastNameLabel);
+		checkOutPanel.add(checkAddress1Label);
+		checkOutPanel.add(resAddress1Label);
+		checkOutPanel.add(checkTownLabel);
+		checkOutPanel.add(resTownLabel);
+		checkOutPanel.add(checkcontactNoLabel);
+		checkOutPanel.add(rescontactNoLabel);
+		checkOutPanel.add(checkRoomTypeLabel);
+		checkOutPanel.add(resRoomTypeLabel);
+		checkOutPanel.add(checkRoomPriceLabel);
+		checkOutPanel.add(resRoomPriceLabel);
+		checkOutPanel.add(enterRoomNo);
+		checkOutPanel.add(myRoomCB);
+		checkOutPanel.add(checkOutSearchButton);
+		checkOutPanel.add(checkOutConfirmButton);
+		checkOutPanel.setSize(400, 400);
+		checkOutPanel.setLocation(400, 50);
+		checkOutPanel.setVisible(false);
+		contentContainer.add(checkOutPanel);
 
 		checkOutConfirmButton.addActionListener(this);
 		checkOutSearchButton.addActionListener(this);
@@ -655,19 +645,19 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		custServGroupPanel.setVisible(true);
 		custServPanel.add(custServGroupPanel);
 
-		content.add(custServPanel);
+		contentContainer.add(custServPanel);
 		setSize(1000, 845);
 		setVisible(true);
 
-		TableModelCustomer.refreshFromDB(stmt);
+		TableModelCustomer.refreshFromDB(sqlStatement);
 	}
 
 	public void initiate_db_conn() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			String url = "jdbc:mysql://localhost:3307/test2";
-			con = DriverManager.getConnection(url, "root", "admin");
-			stmt = con.createStatement();
+			databaseConnection = DriverManager.getConnection(url, "root", "admin");
+			sqlStatement = databaseConnection.createStatement();
 		} catch (Exception e) {
 			System.out.println("Error: Failed to connect to database\n" + e.getMessage());
 		}
@@ -678,45 +668,45 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 
 			if (yes1.isSelected()) {
-				amenitiesPanel.setVisible(true);
+				servicesPanel.setVisible(true);
 
 				if (taxi.isSelected()) {
-					tx = "yes";
+					taxiString = "yes";
 				} else
-					tx = "no";
+					taxiString = "no";
 
 				if (iron.isSelected()) {
-					irn = "yes";
+					ironString = "yes";
 				} else
-					irn = "no";
+					ironString = "no";
 
 				if (wakeupCall.isSelected()) {
-					wc = "yes";
+					wakecallString = "yes";
 				} else
-					wc = "no";
+					wakecallString = "no";
 			}
 
 			if (brecky.isSelected()) {
-				bk = "yes";
+				breakfastString = "yes";
 			} else
-				bk = "no";
+				breakfastString = "no";
 
 			if (no1.isSelected()) {
-				amenitiesPanel.setVisible(false);
+				servicesPanel.setVisible(false);
 			}
 
 			if (Room.isSelected()) {
 				dbContentsPanel4.setVisible(true);
 				dbContentsPanel1.setVisible(false);
 				dbContentsPanel3.setVisible(false);
-				TableModelCustomer.refreshFromDB(stmt);
+				TableModelCustomer.refreshFromDB(sqlStatement);
 			}
 
 			if (Customer.isSelected()) {
 				dbContentsPanel1.setVisible(true);
 				dbContentsPanel4.setVisible(false);
 				dbContentsPanel3.setVisible(false);
-				TableModelCustomer.refreshFromDB(stmt);
+				TableModelCustomer.refreshFromDB(sqlStatement);
 			}
 
 			if (Breakfast.isSelected()) {
@@ -731,7 +721,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 				dbContentsPanel1.setVisible(false);
 				dbContentsPanel4.setVisible(false);
 
-				TableModelAmine.refreshFromDB(stmt);
+				TableModelAmine.refreshFromDB(sqlStatement);
 
 			}
 
@@ -745,36 +735,36 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		if (target == homeButton) {
 			controlPanel.setVisible(true);
 			detailsPanel.setVisible(false);
-			checkOutDetailsPanel.setVisible(false);
+			checkOutPanel.setVisible(false);
 			dbContentsPanel1.setVisible(false);
 			dbContentsPanel3.setVisible(false);
 			dbContentsPanel4.setVisible(false);
 			vacanciesPanel.setVisible(true);
 			custServPanel.setVisible(false);
-			dbPanel.setVisible(false);
-			amenitiesPanel.setVisible(false);
+			databasePanal.setVisible(false);
+			servicesPanel.setVisible(false);
 
 		}
 
 		if (target == checkInButton) {
 			controlPanel.setVisible(false);
 			detailsPanel.setVisible(true);
-			checkOutDetailsPanel.setVisible(false);
+			checkOutPanel.setVisible(false);
 			vacanciesPanel.setVisible(false);
 			custServPanel.setVisible(false);
 			dbContentsPanel1.setVisible(false);
 			dbContentsPanel3.setVisible(false);
 			dbContentsPanel4.setVisible(false);
-			dbPanel.setVisible(true);
-			amenitiesPanel.setVisible(false);
-			TableModelRoom.refreshFromDB(stmt);
+			databasePanal.setVisible(true);
+			servicesPanel.setVisible(false);
+			TableModelRoom.refreshFromDB(sqlStatement);
 
 
-			amenitiesPanel.setVisible(false);
+			servicesPanel.setVisible(false);
 		}
 
 		if (target == checkOutButton) {
-			checkOutDetailsPanel.setVisible(true);
+			checkOutPanel.setVisible(true);
 			controlPanel.setVisible(false);
 			detailsPanel.setVisible(false);
 			dbContentsPanel1.setVisible(false);
@@ -782,8 +772,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			dbContentsPanel4.setVisible(false);
 			vacanciesPanel.setVisible(false);
 			custServPanel.setVisible(false);
-			dbPanel.setVisible(false);
-			amenitiesPanel.setVisible(false);
+			databasePanal.setVisible(false);
+			servicesPanel.setVisible(false);
 		}
 
 		if (target == checkOutConfirmButton) {
@@ -792,25 +782,25 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			String updateTemp0 = "UPDATE room inner join customer inner join amine SET room.roomVacant = 'yes', room.cust_id = null, room.am_id = null where room_id = "
 					+ RoomCB.getSelectedItem() + ";";
 			try {
-				stmt.executeUpdate(updateTemp1);
-				stmt.executeUpdate(updateTemp0);
+				sqlStatement.executeUpdate(updateTemp1);
+				sqlStatement.executeUpdate(updateTemp0);
 			} catch (SQLException sqle) {
 				System.err.println("Error with  insert:\n" + sqle.toString());
 			}
 
 		}
 
-		if (target == custServButton) {
+		if (target == servicesButton) {
 			controlPanel.setVisible(false);
 			detailsPanel.setVisible(false);
-			checkOutDetailsPanel.setVisible(false);
+			checkOutPanel.setVisible(false);
 			dbContentsPanel1.setVisible(false);
 			dbContentsPanel3.setVisible(false);
 			dbContentsPanel4.setVisible(false);
 			vacanciesPanel.setVisible(false);
 			custServPanel.setVisible(true);
-			dbPanel.setVisible(false);
-			amenitiesPanel.setVisible(false);
+			databasePanal.setVisible(false);
+			servicesPanel.setVisible(false);
 		}
 
 		if (target == clearButton) {
@@ -828,41 +818,41 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			try {
 
 				String updateTemp0 = "UPDATE room inner join customer inner join amine SET room.roomVacant = 'no', room.cust_id = customer.cust_id, room.am_id = amine.am_id where room_id = " + RoomCB.getSelectedItem() + ";";
-				stmt.executeUpdate(updateTemp0);
-				rs = stmt.executeQuery("SELECT * from room ");
-				rs.next();
-				rs.close();
+				sqlStatement.executeUpdate(updateTemp0);
+				databaseResultSet = sqlStatement.executeQuery("SELECT * from room ");
+				databaseResultSet.next();
+				databaseResultSet.close();
 			}
 
 			catch (SQLException sqle) {
 				System.err.println("Error with delete:\n" + sqle.toString());
 			}
 
-			TableModelCustomer.refreshFromDB(stmt);
+			TableModelCustomer.refreshFromDB(sqlStatement);
 
 			try {
 				String updateTemp = "INSERT INTO customer VALUES(" + null + ",'" + RoomCB.getSelectedItem() + "','"	+ FirstNameTF.getText() + "','" + LastNameTF.getText() + "','" + Address1TF.getText() + "','" + TownTF.getText() + "','" + contactNoTF.getText() + "');";
  
 
 				if (yes1.isSelected()) {
-					String updateTemp3 = "INSERT INTO amine VALUES(" + null + ",'" + tx + "','" + irn + "','" + wc	+ "','" + bk + "','" + RoomCB.getSelectedItem() + "');";
-					stmt.executeUpdate(updateTemp3);
-					TableModelAmine.refreshFromDB(stmt);
+					String updateTemp3 = "INSERT INTO amine VALUES(" + null + ",'" + taxiString + "','" + ironString + "','" + wakecallString	+ "','" + breakfastString + "','" + RoomCB.getSelectedItem() + "');";
+					sqlStatement.executeUpdate(updateTemp3);
+					TableModelAmine.refreshFromDB(sqlStatement);
 				}
 				if (no1.isSelected()) {
-					String updateTemp3 = "INSERT INTO amine VALUES(" + null + ",'" + tx + "','" + irn + "','" + wc	+ "','" + bk + "','" + RoomCB.getSelectedItem() + "');";
-					stmt.executeUpdate(updateTemp3);
-					TableModelAmine.refreshFromDB(stmt);
+					String updateTemp3 = "INSERT INTO amine VALUES(" + null + ",'" + taxiString + "','" + ironString + "','" + wakecallString	+ "','" + breakfastString + "','" + RoomCB.getSelectedItem() + "');";
+					sqlStatement.executeUpdate(updateTemp3);
+					TableModelAmine.refreshFromDB(sqlStatement);
 				}
 
-				stmt.executeUpdate(updateTemp);
+				sqlStatement.executeUpdate(updateTemp);
 
 			} catch (SQLException sqle) {
 				System.err.println("Error with  insert:\n" + sqle.toString());
 			} finally {
-				TableModelCustomer.refreshFromDB(stmt);
-				TableModelAmine.refreshFromDB(stmt);
-				TableModelRoom.refreshFromDB(stmt);
+				TableModelCustomer.refreshFromDB(sqlStatement);
+				TableModelAmine.refreshFromDB(sqlStatement);
+				TableModelRoom.refreshFromDB(sqlStatement);
 			}
 		}
 		if (target == deleteButton) {
@@ -871,16 +861,16 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			String updateTemp0 = "UPDATE room SET room.roomVacant = 'yes', room.cust_id = null, room.am_id = null where room_id = "
 					+ RoomCB.getSelectedItem() + ";";
 			try {
-				stmt.executeUpdate(updateTemp1);
-				stmt.executeUpdate(updateTemp0);
+				sqlStatement.executeUpdate(updateTemp1);
+				sqlStatement.executeUpdate(updateTemp0);
 			} catch (SQLException sqle) {
 				System.err.println("Error with  insert:\n" + sqle.toString());
 			}
 
 			finally {
-				TableModelCustomer.refreshFromDB(stmt);
-				TableModelAmine.refreshFromDB(stmt);
-				TableModelRoom.refreshFromDB(stmt);
+				TableModelCustomer.refreshFromDB(sqlStatement);
+				TableModelAmine.refreshFromDB(sqlStatement);
+				TableModelRoom.refreshFromDB(sqlStatement);
 			}
 		}
 		if (target == updateButton) {
@@ -888,12 +878,12 @@ public class MainContent extends JInternalFrame implements ActionListener {
  
 				if (yes1.isSelected()) {
 
-	String updateTemp3 = "UPDATE amine SET " + "Taxi = '" + tx + "'," + " Iron = '" + irn + "'," + " Brecky = '" + bk + "'," + " WakeUpCall = '" + wc + "',  room = '"	+ RoomCB.getSelectedItem() + "' where amine.room = " + RoomCB.getSelectedItem();
-					stmt.executeUpdate(updateTemp3);
-					rs = stmt.executeQuery("SELECT * from amine ");
-					rs.next();
-					rs.close();
-					TableModelAmine.refreshFromDB(stmt);
+	String updateTemp3 = "UPDATE amine SET " + "Taxi = '" + taxiString + "'," + " Iron = '" + ironString + "'," + " Brecky = '" + breakfastString + "'," + " WakeUpCall = '" + wakecallString + "',  room = '"	+ RoomCB.getSelectedItem() + "' where amine.room = " + RoomCB.getSelectedItem();
+					sqlStatement.executeUpdate(updateTemp3);
+					databaseResultSet = sqlStatement.executeQuery("SELECT * from amine ");
+					databaseResultSet.next();
+					databaseResultSet.close();
+					TableModelAmine.refreshFromDB(sqlStatement);
 				}
 
 				String updateTemp1 = "UPDATE customer SET " + "room = '" + RoomCB.getSelectedItem() + "',firstName = '"
@@ -901,15 +891,15 @@ public class MainContent extends JInternalFrame implements ActionListener {
 						+ Address1TF.getText() + "', town = '" + TownTF.getText() + "', contactNo = '"
 						+ contactNoTF.getText() + "' where customer.room = " + RoomCB.getSelectedItem();
 
-				stmt.executeUpdate(updateTemp1);
+				sqlStatement.executeUpdate(updateTemp1);
 
-				rs = stmt.executeQuery("SELECT * from customer ");
-				rs.next();
-				rs.close();
+				databaseResultSet = sqlStatement.executeQuery("SELECT * from customer ");
+				databaseResultSet.next();
+				databaseResultSet.close();
 			} catch (SQLException sqle) {
 				System.err.println("Error with  update:\n" + sqle.toString());
 			} finally {
-				TableModelCustomer.refreshFromDB(stmt);
+				TableModelCustomer.refreshFromDB(sqlStatement);
 			}
 		}
 
@@ -919,8 +909,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 					+ myRoomCB.getSelectedItem() + " AND customer.room=" + myRoomCB.getSelectedItem() + ";";
 
 			try {
-				rs = stmt.executeQuery(command);
-				writeToFile(rs);
+				databaseResultSet = sqlStatement.executeQuery(command);
+				writeToFile(databaseResultSet);
 
 			} catch (Exception e1) {
 				e1.printStackTrace();
@@ -929,7 +919,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			CSVReader reader = null;
 			try {
 				reader = new CSVReader(
-						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Copy of JDBC_Project/Test.csv"),
+						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"),
 						',', '"', 1);
 				String[] nextLine;
 
@@ -962,8 +952,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 					+ RoomCB.getSelectedItem() + ";";
 
 			try {
-				rs = stmt.executeQuery(command);
-				writeToFile(rs);
+				databaseResultSet = sqlStatement.executeQuery(command);
+				writeToFile(databaseResultSet);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -971,7 +961,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			CSVReader reader = null;
 			try {
 				reader = new CSVReader(
-						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Copy of JDBC_Project/Test.csv"),
+						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"),
 						',', '"', 1);
 				String[] nextLine;
 
@@ -995,7 +985,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			}
 		}
 
-		if (target == this.vacCheckButton) {
+		if (target == this.vacanciesCheckButton) {
 
 			command1 = "select roomNo from room where room.roomVacant='yes' AND room.roomType='Single';";
 			command2 = "select roomNo from room where room.roomVacant='yes'AND room.roomType='Double';";
@@ -1019,8 +1009,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 			try {
 
-				rs = stmt.executeQuery(command);
-				writeToFile(rs);
+				databaseResultSet = sqlStatement.executeQuery(command);
+				writeToFile(databaseResultSet);
 				vacanciesRoomCB.removeAllItems();
 
 			} catch (Exception e1) {
@@ -1030,7 +1020,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			CSVReader reader = null;
 			try {
 				reader = new CSVReader(
-						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Copy of JDBC_Project/Test.csv"),
+						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"),
 						',', '"', 1);
 				String[] nextLine;
 
@@ -1078,15 +1068,15 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 			try {
 				myServiceCB.removeAllItems();
-				rs = stmt.executeQuery(command);
-				writeToFile(rs);
+				databaseResultSet = sqlStatement.executeQuery(command);
+				writeToFile(databaseResultSet);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
 
 			try {
-				rs = stmt.executeQuery(command);
-				writeToFile(rs);
+				databaseResultSet = sqlStatement.executeQuery(command);
+				writeToFile(databaseResultSet);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -1094,7 +1084,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			CSVReader reader = null;
 			try {
 				reader = new CSVReader(
-						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Copy of JDBC_Project/Test.csv"),
+						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"),
 						',', '"', 1);
 				String[] nextLine;
 
@@ -1165,8 +1155,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			}
 
 			try {
-				rs = stmt.executeQuery(command);
-				writeToFile(rs);
+				databaseResultSet = sqlStatement.executeQuery(command);
+				writeToFile(databaseResultSet);
 			} catch (Exception e1) {
 				e1.printStackTrace();
 			}
@@ -1174,7 +1164,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			CSVReader reader = null;
 			try {
 				reader = new CSVReader(
-						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Copy of JDBC_Project/Test.csv"),
+						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"),
 						',', '"', 1);
 				String[] nextLine;
 
