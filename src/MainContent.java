@@ -81,7 +81,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JLabel FirstNameLabel = new JLabel("FirstName:");
 	private JLabel LastNameLabel = new JLabel("LastName:");
 	private JLabel Address1Label = new JLabel("Address1:");
-	private JLabel Address2Label = new JLabel("Address2:");
+	//private JLabel Address2Label = new JLabel("Address2:");
 	private JLabel TownLabel = new JLabel("Town:");
 	private JLabel contactNoLabel = new JLabel("Contact Num:");
 	private JLabel enterRoomNo = new JLabel("Select Room Number:");
@@ -145,19 +145,17 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JRadioButton wakeupCall = new JRadioButton("Wakeup Call");
 	private JRadioButton brecky = new JRadioButton("Breakfast");
 
-	private ButtonGroup buttonGroup = new ButtonGroup();
-	private JRadioButton X = new JRadioButton("X");
-	private JRadioButton A = new JRadioButton("Single");
-	private JRadioButton B = new JRadioButton("Double");
-	private JRadioButton C = new JRadioButton("Master");
+	private ButtonGroup buttonGroup = new ButtonGroup(); 
+	private JRadioButton singleRoom = new JRadioButton("Single");
+	private JRadioButton doubleRoom = new JRadioButton("Double");
+	private JRadioButton masterRoom = new JRadioButton("Master");
 
 	private ButtonGroup checkServiceGroup = new ButtonGroup();
-	private JRadioButton Q = new JRadioButton("Q");
-	private JRadioButton bf = new JRadioButton("Breakfast");
+	private JRadioButton Q = new JRadioButton("Q"); 
 	private JRadioButton tax = new JRadioButton("Taxi");
 	private JRadioButton ior = new JRadioButton("Iron");
 	private JRadioButton wakup = new JRadioButton("Wakeup Call");
-	private JRadioButton breck = new JRadioButton("Brecky");
+	private JRadioButton breck = new JRadioButton("Breakfast");
 
 	private ButtonGroup dbGroup = new ButtonGroup();
 	private JRadioButton Room = new JRadioButton("Room DB");
@@ -174,24 +172,16 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JComboBox<String> vacanciesRoomCB = new JComboBox<String>();
 	private JComboBox myServiceCB = new JComboBox();
 
-	JTextPane custDetPane = new JTextPane();
+	JTextPane custDetPane = new JTextPane(); 
 
-	ButtonGroup breakfastGroup = new ButtonGroup();
-	JRadioButton Z = new JRadioButton("Z");
-	JRadioButton yes = new JRadioButton("Yes");
-	JRadioButton no = new JRadioButton("No");
-
-	ButtonGroup amenitiesGroup = new ButtonGroup();
-	JRadioButton y = new JRadioButton("Y");
-	JRadioButton yes1 = new JRadioButton("Yes");
-	JRadioButton no1 = new JRadioButton("No");
+	ButtonGroup servicesButtonGroup = new ButtonGroup(); 
+	JRadioButton yesOptions = new JRadioButton("Yes");
+	JRadioButton noOptions = new JRadioButton("No");
 
 	ButtonGroup bigButtonGroup = new ButtonGroup();
 
 	private Font f1 = new Font("Sans Bold", Font.BOLD, 16);
-
 	private Color backgroundColorGray = new Color(167,173,186);
-
 	private Color fontColorYellow = new Color(255,220,115);
 
 	public MainContent(String aTitle) {
@@ -293,36 +283,32 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		contentContainer.add(vacanciesPanel);
 
 		vacanciesCheckButton.setFont(f1);
-		A.setFont(f1);
-		B.setFont(f1);
-		C.setFont(f1);
+		singleRoom.setFont(f1);
+		doubleRoom.setFont(f1);
+		masterRoom.setFont(f1);
 		vacanciesRoomPriceLabel.setFont(f1);
-		vacanciesResRoomPriceLabel.setFont(f1);
+		vacanciesResRoomPriceLabel.setFont(f1); 
+		
+		buttonGroup.add(singleRoom);
+		buttonGroup.add(doubleRoom);
+		buttonGroup.add(masterRoom);
+ 
+		singleRoom.setBackground(backgroundColorGray);
+		doubleRoom.setBackground(backgroundColorGray);
+		masterRoom.setBackground(backgroundColorGray);
 
-		buttonGroup.add(X);
-		X.setVisible(false);
-		buttonGroup.add(A);
-		buttonGroup.add(B);
-		buttonGroup.add(C);
-
-		X.setBackground(backgroundColorGray);
-		A.setBackground(backgroundColorGray);
-		B.setBackground(backgroundColorGray);
-		C.setBackground(backgroundColorGray);
-
-		A.addActionListener(this);
-		B.addActionListener(this);
-		C.addActionListener(this);
+		singleRoom.addActionListener(this);
+		doubleRoom.addActionListener(this);
+		masterRoom.addActionListener(this);
 
 		controlPanel = new JPanel();
 		controlPanel.setLayout(new FlowLayout());
 		vacanciesCheckButton.setBackground(fontColorYellow);
 		vacanciesCheckButton.setSize(200, 30);
-		controlPanel.add(vacanciesCheckButton);
-		controlPanel.add(X);
-		controlPanel.add(A);
-		controlPanel.add(B);
-		controlPanel.add(C);
+		controlPanel.add(vacanciesCheckButton); 
+		controlPanel.add(singleRoom);
+		controlPanel.add(doubleRoom);
+		controlPanel.add(masterRoom);
 		controlPanel.setBackground(backgroundColorGray);
 		controlPanel.setBorder(BorderFactory.createTitledBorder(lineBorder, "Vacancies"));
 		controlPanel.setSize(600, 100);
@@ -332,34 +318,31 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 		vacanciesCheckButton.addActionListener(this);
 		
-		yes1.setFont(f1);
-		no1.setFont(f1);
+		yesOptions.setFont(f1);
+		noOptions.setFont(f1);
 		taxi.setFont(f1);
 		iron.setFont(f1);
 		wakeupCall.setFont(f1);
 		brecky.setFont(f1);
 		vacanciesRoomCB.setFont(f1);
 
-		yes1.setForeground(fontColorYellow);
-		no1.setForeground(fontColorYellow);
+		yesOptions.setForeground(fontColorYellow);
+		noOptions.setForeground(fontColorYellow);
 		taxi.setForeground(fontColorYellow);
 		iron.setForeground(fontColorYellow);
 		wakeupCall.setForeground(fontColorYellow);
 		brecky.setForeground(fontColorYellow);
 
-		yes1.setBackground(backgroundColorGray);
-		no1.setBackground(backgroundColorGray);
-		y.setBackground(backgroundColorGray);
+		yesOptions.setBackground(backgroundColorGray);
+		noOptions.setBackground(backgroundColorGray); 
 		taxi.setBackground(backgroundColorGray);
 		iron.setBackground(backgroundColorGray);
 		wakeupCall.setBackground(backgroundColorGray);
 		brecky.setBackground(backgroundColorGray);
 		vacanciesRoomCB.setBackground(backgroundColorGray);
-
-		amenitiesGroup.add(y);
-		y.setVisible(false);
-		amenitiesGroup.add(yes1);
-		amenitiesGroup.add(no1);
+ 
+		servicesButtonGroup.add(yesOptions);
+		servicesButtonGroup.add(noOptions);
 
 		servicesPanel = new JPanel();
 		servicesPanel.setLayout(new GridLayout(4, 1));
@@ -377,8 +360,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		RoomLabel.setFont(f1);
 		FirstNameLabel.setFont(f1);
 		LastNameLabel.setFont(f1);
-		Address1Label.setFont(f1);
-		Address2Label.setFont(f1);
+		Address1Label.setFont(f1); 
 		TownLabel.setFont(f1);
 		contactNoLabel.setFont(f1);
 		enterRoomNo.setFont(f1);
@@ -399,8 +381,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		RoomLabel.setForeground(fontColorYellow);
 		FirstNameLabel.setForeground(fontColorYellow);
 		LastNameLabel.setForeground(fontColorYellow);
-		Address1Label.setForeground(fontColorYellow);
-		Address2Label.setForeground(fontColorYellow);
+		Address1Label.setForeground(fontColorYellow); 
 		TownLabel.setForeground(fontColorYellow);
 		contactNoLabel.setForeground(fontColorYellow);
 		enterRoomNo.setForeground(fontColorYellow);
@@ -440,8 +421,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		detailsPanel.add(servicesLabel);
 		
 		
-		detailsPanel.add(yes1); 
-		detailsPanel.add(no1);
+		detailsPanel.add(yesOptions); 
+		detailsPanel.add(noOptions);
 		detailsPanel.add(blankLabel);
 		detailsPanel.add(confirmButton);
 		detailsPanel.add(updateButton);
@@ -459,13 +440,9 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		deleteButton.addActionListener(this);
 		clearButton.addActionListener(this);
 		editButton.addActionListener(this);
-		X.setVisible(false); 
 
-		X.addActionListener(listener); 
-		X.setSelected(true);
-		y.addActionListener(listener);
-		yes1.addActionListener(listener);
-		no1.addActionListener(listener);
+		yesOptions.addActionListener(listener);
+		noOptions.addActionListener(listener);
 		taxi.addActionListener(listener);
 		iron.addActionListener(listener);
 		wakeupCall.addActionListener(listener);
@@ -577,8 +554,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 		checkOutConfirmButton.addActionListener(this);
 		checkOutSearchButton.addActionListener(this);
-		
-		bf.setFont(f1);
+		 
 		tax.setFont(f1);
 		ior.setFont(f1);
 		wakup.setFont(f1);
@@ -597,8 +573,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		checkServiceGroup.add(wakup);
 		checkServiceGroup.add(breck);
 
-		Q.setBackground(backgroundColorGray);
-		bf.setBackground(backgroundColorGray);
+		Q.setBackground(backgroundColorGray); 
 		tax.setBackground(backgroundColorGray);
 		ior.setBackground(backgroundColorGray);
 		wakup.setBackground(backgroundColorGray);
@@ -608,8 +583,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		checkService1.setBackground(fontColorYellow);
 		checkService2.setBackground(fontColorYellow);
 
-		Q.addActionListener(this);
-		bf.addActionListener(this);
+		Q.addActionListener(this); 
 		tax.addActionListener(this);
 		ior.addActionListener(this);
 		wakup.addActionListener(this);
@@ -667,7 +641,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			if (yes1.isSelected()) {
+			if (yesOptions.isSelected()) {
 				servicesPanel.setVisible(true);
 
 				if (taxi.isSelected()) {
@@ -691,7 +665,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			} else
 				breakfastString = "no";
 
-			if (no1.isSelected()) {
+			if (noOptions.isSelected()) {
 				servicesPanel.setVisible(false);
 			}
 
@@ -834,12 +808,12 @@ public class MainContent extends JInternalFrame implements ActionListener {
 				String updateTemp = "INSERT INTO customer VALUES(" + null + ",'" + RoomCB.getSelectedItem() + "','"	+ FirstNameTF.getText() + "','" + LastNameTF.getText() + "','" + Address1TF.getText() + "','" + TownTF.getText() + "','" + contactNoTF.getText() + "');";
  
 
-				if (yes1.isSelected()) {
+				if (yesOptions.isSelected()) {
 					String updateTemp3 = "INSERT INTO amine VALUES(" + null + ",'" + taxiString + "','" + ironString + "','" + wakecallString	+ "','" + breakfastString + "','" + RoomCB.getSelectedItem() + "');";
 					sqlStatement.executeUpdate(updateTemp3);
 					TableModelAmine.refreshFromDB(sqlStatement);
 				}
-				if (no1.isSelected()) {
+				if (noOptions.isSelected()) {
 					String updateTemp3 = "INSERT INTO amine VALUES(" + null + ",'" + taxiString + "','" + ironString + "','" + wakecallString	+ "','" + breakfastString + "','" + RoomCB.getSelectedItem() + "');";
 					sqlStatement.executeUpdate(updateTemp3);
 					TableModelAmine.refreshFromDB(sqlStatement);
@@ -876,7 +850,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		if (target == updateButton) {
 			try {
  
-				if (yes1.isSelected()) {
+				if (yesOptions.isSelected()) {
 
 	String updateTemp3 = "UPDATE amine SET " + "Taxi = '" + taxiString + "'," + " Iron = '" + ironString + "'," + " Brecky = '" + breakfastString + "'," + " WakeUpCall = '" + wakecallString + "',  room = '"	+ RoomCB.getSelectedItem() + "' where amine.room = " + RoomCB.getSelectedItem();
 					sqlStatement.executeUpdate(updateTemp3);
@@ -991,17 +965,17 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			command2 = "select roomNo from room where room.roomVacant='yes'AND room.roomType='Double';";
 			command3 = "select roomNo from room where room.roomVacant='yes'AND room.roomType='Master';";
 
-			if (A.isSelected()) {
+			if (singleRoom.isSelected()) {
 				vacanciesResRoomTypeLabel.setText("Single");
 				vacanciesResRoomPriceLabel.setText("€39.99");
 				command = command1;
 			}
-			if (B.isSelected()) {
+			if (doubleRoom.isSelected()) {
 				vacanciesResRoomTypeLabel.setText("Double");
 				vacanciesResRoomPriceLabel.setText("€49.99");
 				command = command2;
 			}
-			if (C.isSelected()) {
+			if (masterRoom.isSelected()) {
 				vacanciesResRoomTypeLabel.setText("Master");
 				vacanciesResRoomPriceLabel.setText("€59.99");
 				command = command3;
