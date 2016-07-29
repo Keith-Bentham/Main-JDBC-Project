@@ -31,7 +31,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
 		getContentPane().add(c);
 
-		setSize(1200, 600);
+		setSize(1204, 600);
 		setVisible(true);
 	}
 
