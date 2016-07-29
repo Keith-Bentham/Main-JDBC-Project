@@ -114,10 +114,10 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JTextField contactNoTF = new JTextField(10);
 
 	private static QueryTableModelCustomer TableModelCustomer = new QueryTableModelCustomer();
-	private static QueryTableModelAmine TableModelAmine = new QueryTableModelAmine();
+	private static QueryTableModelServices TableModelServices = new QueryTableModelServices();
 	private static QueryTableModelRoom TableModelRoom = new QueryTableModelRoom();
 	private JTable TableofDBContentsCustomer = new JTable(TableModelCustomer);
-	private JTable TableofDBContentsAmine = new JTable(TableModelAmine);
+	private JTable TableofDBContentsAmine = new JTable(TableModelServices);
 	private JTable TableofDBContentsRoom = new JTable(TableModelRoom);
 	
 	private JButton updateButton = new JButton("Update");
@@ -678,7 +678,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 				dbContentsPanel1.setVisible(false);
 				dbContentsPanel4.setVisible(false);
 
-				TableModelAmine.refreshFromDB(sqlStatement);
+				TableModelServices.refreshFromDB(sqlStatement);
 
 			}
 
@@ -733,9 +733,9 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		}
 
 		if (target == checkOutConfirmButton) {
-			String updateTemp1 = "DELETE customer, amine FROM customer INNER JOIN amine WHERE customer.room="
-					+ RoomCB.getSelectedItem() + " AND amine.room=" + RoomCB.getSelectedItem() + ";";
-			String updateTemp0 = "UPDATE room inner join customer inner join amine SET room.roomVacant = 'yes', room.cust_id = null, room.am_id = null where room_id = "
+			String updateTemp1 = "DELETE customer, service FROM customer INNER JOIN service WHERE customer.room="
+					+ RoomCB.getSelectedItem() + " AND service.room=" + RoomCB.getSelectedItem() + ";";
+			String updateTemp0 = "UPDATE room inner join customer inner join service SET room.roomVacant = 'yes', room.cust_id = null, room.service_id = null where room_id = "
 					+ RoomCB.getSelectedItem() + ";";
 			try {
 				sqlStatement.executeUpdate(updateTemp1);
@@ -772,7 +772,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 			try {
 
-				String updateTemp0 = "UPDATE room inner join customer inner join amine SET room.roomVacant = 'no', room.cust_id = customer.cust_id, room.am_id = amine.am_id where room_id = "
+				String updateTemp0 = "UPDATE room inner join customer inner join service SET room.roomVacant = 'no', room.cust_id = customer.cust_id, room.service_id = service.service_id where room_id = "
 						+ RoomCB.getSelectedItem() + ";";
 				sqlStatement.executeUpdate(updateTemp0);
 				databaseResultSet = sqlStatement.executeQuery("SELECT * from room ");
@@ -792,18 +792,18 @@ public class MainContent extends JInternalFrame implements ActionListener {
 						+ TownTF.getText() + "','" + contactNoTF.getText() + "');";
 
 				if (yesOptions.isSelected()) {
-					String updateTemp3 = "INSERT INTO amine VALUES(" + null + ",'" + taxiString + "','" + ironString
+					String updateTemp3 = "INSERT INTO service VALUES(" + null + ",'" + taxiString + "','" + ironString
 							+ "','" + wakecallString + "','" + breakfastString + "','" + RoomCB.getSelectedItem()
 							+ "');";
 					sqlStatement.executeUpdate(updateTemp3);
-					TableModelAmine.refreshFromDB(sqlStatement);
+					TableModelServices.refreshFromDB(sqlStatement);
 				}
 				if (noOptions.isSelected()) {
-					String updateTemp3 = "INSERT INTO amine VALUES(" + null + ",'" + taxiString + "','" + ironString
+					String updateTemp3 = "INSERT INTO service VALUES(" + null + ",'" + taxiString + "','" + ironString
 							+ "','" + wakecallString + "','" + breakfastString + "','" + RoomCB.getSelectedItem()
 							+ "');";
 					sqlStatement.executeUpdate(updateTemp3);
-					TableModelAmine.refreshFromDB(sqlStatement);
+					TableModelServices.refreshFromDB(sqlStatement);
 				}
 
 				sqlStatement.executeUpdate(updateTemp);
@@ -812,14 +812,14 @@ public class MainContent extends JInternalFrame implements ActionListener {
 				System.err.println("Error with  insert:\n" + sqle.toString());
 			} finally {
 				TableModelCustomer.refreshFromDB(sqlStatement);
-				TableModelAmine.refreshFromDB(sqlStatement);
+				TableModelServices.refreshFromDB(sqlStatement);
 				TableModelRoom.refreshFromDB(sqlStatement);
 			}
 		}
 		if (target == deleteButton) {
-			String updateTemp1 = "DELETE customer, amine FROM customer INNER JOIN amine WHERE customer.room="
-					+ RoomCB.getSelectedItem() + " AND amine.room=" + RoomCB.getSelectedItem() + ";";
-			String updateTemp0 = "UPDATE room SET room.roomVacant = 'yes', room.cust_id = null, room.am_id = null where room_id = "
+			String updateTemp1 = "DELETE customer, service FROM customer INNER JOIN service WHERE customer.room="
+					+ RoomCB.getSelectedItem() + " AND service.room=" + RoomCB.getSelectedItem() + ";";
+			String updateTemp0 = "UPDATE room SET room.roomVacant = 'yes', room.cust_id = null, room.service_id = null where room_id = "
 					+ RoomCB.getSelectedItem() + ";";
 			try {
 				sqlStatement.executeUpdate(updateTemp1);
@@ -830,7 +830,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 			finally {
 				TableModelCustomer.refreshFromDB(sqlStatement);
-				TableModelAmine.refreshFromDB(sqlStatement);
+				TableModelServices.refreshFromDB(sqlStatement);
 				TableModelRoom.refreshFromDB(sqlStatement);
 			}
 		}
@@ -839,15 +839,15 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 				if (yesOptions.isSelected()) {
 
-					String updateTemp3 = "UPDATE amine SET " + "Taxi = '" + taxiString + "'," + " Iron = '" + ironString
-							+ "'," + " Brecky = '" + breakfastString + "'," + " WakeUpCall = '" + wakecallString
-							+ "',  room = '" + RoomCB.getSelectedItem() + "' where amine.room = "
+					String updateTemp3 = "UPDATE service SET " + "Taxi = '" + taxiString + "'," + " Iron = '" + ironString
+							+ "'," + " Breakfast = '" + breakfastString + "'," + " WakeUpCall = '" + wakecallString
+							+ "',  room = '" + RoomCB.getSelectedItem() + "' where service.room = "
 							+ RoomCB.getSelectedItem();
 					sqlStatement.executeUpdate(updateTemp3);
-					databaseResultSet = sqlStatement.executeQuery("SELECT * from amine ");
+					databaseResultSet = sqlStatement.executeQuery("SELECT * from service ");
 					databaseResultSet.next();
 					databaseResultSet.close();
-					TableModelAmine.refreshFromDB(sqlStatement);
+					TableModelServices.refreshFromDB(sqlStatement);
 				}
 
 				String updateTemp1 = "UPDATE customer SET " + "room = '" + RoomCB.getSelectedItem() + "',firstName = '"
@@ -1008,10 +1008,10 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 		if (target == this.whatRoomDDown) {
 
-			command2 = "select room from amine  where amine.Taxi='yes';";
-			command3 = "select room from amine  where amine.Iron='yes';";
-			command4 = "select room from amine  where amine.WakeUpCall='yes';";
-			command5 = "select room from amine  where amine.Breakfast='yes';";
+			command2 = "select room from service  where service.Taxi='yes';";
+			command3 = "select room from service  where service.Iron='yes';";
+			command4 = "select room from service  where service.WakeUpCall='yes';";
+			command5 = "select room from service  where service.Breakfast='yes';";
 
 			if (checkServiceTaxi.isSelected()) {
 				command = command2;
@@ -1100,10 +1100,10 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		if (target == this.howManyCount) {
 
 			myServiceCB.setVisible(false);
-			command2 = "select count(*) from amine  where amine.Taxi='yes';";
-			command3 = "select count(*) from amine  where amine.Iron='yes';";
-			command4 = "select count(*) from amine  where amine.WakeUpCall='yes';";
-			command5 = "select count(*) from amine  where amine.Breakfast='yes';";
+			command2 = "select count(*) from service  where service.Taxi='yes';";
+			command3 = "select count(*) from service  where service.Iron='yes';";
+			command4 = "select count(*) from service  where service.WakeUpCall='yes';";
+			command5 = "select count(*) from service  where service.Breakfast='yes';";
 
 			if (checkServiceTaxi.isSelected()) {
 				command = command2;

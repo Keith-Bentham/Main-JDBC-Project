@@ -7,7 +7,7 @@ import java.util.Vector;
 import javax.swing.table.AbstractTableModel;
 
 @SuppressWarnings("serial")
-class QueryTableModelAmine extends AbstractTableModel {
+class QueryTableModelServices extends AbstractTableModel {
 	Vector modelData;
 	int colCount;
 	String[] headers = new String[0];
@@ -16,7 +16,7 @@ class QueryTableModelAmine extends AbstractTableModel {
 	String[] record;
 	ResultSet rs = null;
 
-	public QueryTableModelAmine() {
+	public QueryTableModelServices() {
 		modelData = new Vector();
 	}
 
@@ -40,7 +40,7 @@ class QueryTableModelAmine extends AbstractTableModel {
 		modelData = new Vector();
 		stmt = stmt1;
 		try {
-			rs = stmt.executeQuery("SELECT * FROM amine");
+			rs = stmt.executeQuery("SELECT * FROM service");
 			ResultSetMetaData meta = rs.getMetaData();
 
 			colCount = meta.getColumnCount();
