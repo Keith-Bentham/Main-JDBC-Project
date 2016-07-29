@@ -1,2 +1,2 @@
-count(*),
-6,
+roomNo,roomType,roomPrice,firstName,lastName,address1,town,contactNo,roomVacant,
+5,Single,39.99,Emma,Fallon,Arcadia,Athlone,0878998766,no,

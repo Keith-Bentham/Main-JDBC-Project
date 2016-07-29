@@ -119,7 +119,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JTable TableofDBContentsCustomer = new JTable(TableModelCustomer);
 	private JTable TableofDBContentsAmine = new JTable(TableModelServices);
 	private JTable TableofDBContentsRoom = new JTable(TableModelRoom);
-	
+
 	private JButton updateButton = new JButton("Update");
 	private JButton confirmButton = new JButton("Confirm");
 	private JButton exportButton = new JButton("Export");
@@ -585,7 +585,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		custServPanel = new JPanel();
 		custServPanel.setLayout(new FlowLayout());
 		custServPanel.setBackground(backgroundColorGray);
-		custServPanel.setBorder(BorderFactory.createTitledBorder(guiLineBorder, "CUSTOMER SERVICES"));
+		custServPanel.setBorder(BorderFactory.createTitledBorder(guiLineBorder, "Customer Required Services"));
 		custServPanel.add(whatRoomDDown);
 		custServPanel.add(howManyCount);
 		custServPanel.add(resTempLabel);
@@ -599,7 +599,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		custServGroupPanel = new JPanel();
 		custServGroupPanel.setLayout(new GridLayout(1, 4));
 		custServGroupPanel.setBackground(backgroundColorGray);
-		custServGroupPanel.setBorder(BorderFactory.createTitledBorder(guiLineBorder, "CUSTOMER SERVICES OPTIONS"));
+		custServGroupPanel.setBorder(BorderFactory.createTitledBorder(guiLineBorder, "Select From Services"));
 		custServGroupPanel.add(checkServiceTaxi);
 		custServGroupPanel.add(checkServiceIron);
 		custServGroupPanel.add(checkServiceWakeupCall);
@@ -677,11 +677,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 				dbContentsPanel3.setVisible(true);
 				dbContentsPanel1.setVisible(false);
 				dbContentsPanel4.setVisible(false);
-
 				TableModelServices.refreshFromDB(sqlStatement);
-
 			}
-
 		}
 	};
 
@@ -839,9 +836,9 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 				if (yesOptions.isSelected()) {
 
-					String updateTemp3 = "UPDATE service SET " + "Taxi = '" + taxiString + "'," + " Iron = '" + ironString
-							+ "'," + " Breakfast = '" + breakfastString + "'," + " WakeUpCall = '" + wakecallString
-							+ "',  room = '" + RoomCB.getSelectedItem() + "' where service.room = "
+					String updateTemp3 = "UPDATE service SET " + "Taxi = '" + taxiString + "'," + " Iron = '"
+							+ ironString + "'," + " Breakfast = '" + breakfastString + "'," + " WakeUpCall = '"
+							+ wakecallString + "',  room = '" + RoomCB.getSelectedItem() + "' where service.room = "
 							+ RoomCB.getSelectedItem();
 					sqlStatement.executeUpdate(updateTemp3);
 					databaseResultSet = sqlStatement.executeQuery("SELECT * from service ");

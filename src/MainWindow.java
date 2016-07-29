@@ -7,27 +7,23 @@ import javax.swing.JMenuItem;
 
 @SuppressWarnings("serial")
 public class MainWindow extends JFrame implements ActionListener {
-	private JMenuItem exitItem;
-	private JMenuItem New;
-
+	private JMenuItem exitItem; 
+	
 	public MainWindow() {
-		super(" ");
+		super("");
 
 		JMenuBar menuBar = new JMenuBar();
-		JMenu fileMenu = new JMenu("");
+		JMenu fileMenu = new JMenu("Exit");
 
-		exitItem = new JMenuItem("Exit");
-		New = new JMenuItem("New");
-		fileMenu.add(exitItem);
-		fileMenu.add(New);
+		exitItem = new JMenuItem("Exit"); 
+		fileMenu.add(exitItem); 
 		menuBar.add(fileMenu);
 		setJMenuBar(menuBar);
-		exitItem.addActionListener(this);
-		New.addActionListener(this);
+		exitItem.addActionListener(this); 
 
 		MainContent c = new MainContent("Keith's B&B");
 		getContentPane().add(c);
-		setSize(1204, 600);
+		setSize(1202, 600);
 		setVisible(true);
 	}
 
