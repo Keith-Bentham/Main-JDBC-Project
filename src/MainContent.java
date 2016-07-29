@@ -44,7 +44,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	String command3 = null;
 	String command4 = null;
 	String command5 = null;
-	
+
 	String taxiString = null;
 	String ironString = null;
 	String breakfastString = null;
@@ -64,7 +64,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JPanel servicesPanel;
 	private JPanel custServGroupPanel;
 	private JPanel databasePanal;
-	private JScrollPane dbContentsPanel1; 
+	private JScrollPane dbContentsPanel1;
 	private JScrollPane dbContentsPanel3;
 	private JScrollPane dbContentsPanel4;
 
@@ -80,13 +80,13 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JLabel RoomLabel = new JLabel("Room:");
 	private JLabel FirstNameLabel = new JLabel("FirstName:");
 	private JLabel LastNameLabel = new JLabel("LastName:");
-	private JLabel Address1Label = new JLabel("Address1:"); 
+	private JLabel Address1Label = new JLabel("Address1:");
 	private JLabel TownLabel = new JLabel("Town:");
 	private JLabel contactNoLabel = new JLabel("Contact Num:");
 	private JLabel enterRoomNo = new JLabel("Select Room Number:");
 	private JLabel servicesLabel = new JLabel("Extra Service:");
 	private JLabel blankLabel = new JLabel(" 			");
-	
+
 	private JLabel checkRoomLabel = new JLabel("Room:");
 	private JLabel checkFirstNameLabel = new JLabel("FirstName:");
 	private JLabel checkLastNameLabel = new JLabel("LastName:");
@@ -109,7 +109,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JTextField RoomTF = new JTextField(10);
 	private JTextField FirstNameTF = new JTextField(10);
 	private JTextField LastNameTF = new JTextField(10);
-	private JTextField Address1TF = new JTextField(10); 
+	private JTextField Address1TF = new JTextField(10);
 	private JTextField TownTF = new JTextField(10);
 	private JTextField contactNoTF = new JTextField(10);
 
@@ -119,6 +119,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JTable TableofDBContentsCustomer = new JTable(TableModelCustomer);
 	private JTable TableofDBContentsAmine = new JTable(TableModelAmine);
 	private JTable TableofDBContentsRoom = new JTable(TableModelRoom);
+	
 	private JButton updateButton = new JButton("Update");
 	private JButton confirmButton = new JButton("Confirm");
 	private JButton exportButton = new JButton("Export");
@@ -143,12 +144,12 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JRadioButton extraServiceWakeupCall = new JRadioButton("Wakeup Call");
 	private JRadioButton extraServiceBreakfast = new JRadioButton("Breakfast");
 
-	private ButtonGroup roomTypeButtonGroup = new ButtonGroup(); 
+	private ButtonGroup roomTypeButtonGroup = new ButtonGroup();
 	private JRadioButton singleRoom = new JRadioButton("Single");
 	private JRadioButton doubleRoom = new JRadioButton("Double");
 	private JRadioButton masterRoom = new JRadioButton("Master");
 
-	private ButtonGroup checkServiceGroup = new ButtonGroup(); 
+	private ButtonGroup checkServiceGroup = new ButtonGroup();
 	private JRadioButton checkServiceTaxi = new JRadioButton("Taxi");
 	private JRadioButton checkServiceIron = new JRadioButton("Iron");
 	private JRadioButton checkServiceWakeupCall = new JRadioButton("Wakeup Call");
@@ -156,8 +157,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 	private ButtonGroup databaseButtonGroup = new ButtonGroup();
 	private JRadioButton roomInfoDatabase = new JRadioButton("Room DB");
-	private JRadioButton customerInfoDatabase = new JRadioButton("Customer DB"); 
-	private JRadioButton servicesInfoDatabase = new JRadioButton("Service DB");
+	private JRadioButton customerInfoDatabase = new JRadioButton("Customer DB");
+	private JRadioButton servicesInfoDatabase = new JRadioButton("Services DB");
 
 	String[] list1 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", };
 	String[] list0 = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", };
@@ -168,17 +169,17 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JComboBox<String> vacanciesRoomCB = new JComboBox<String>();
 	private JComboBox myServiceCB = new JComboBox();
 
-	JTextPane custDetPane = new JTextPane(); 
+	JTextPane custDetPane = new JTextPane();
 
-	ButtonGroup servicesButtonGroup = new ButtonGroup(); 
+	ButtonGroup servicesButtonGroup = new ButtonGroup();
 	JRadioButton yesOptions = new JRadioButton("Yes");
 	JRadioButton noOptions = new JRadioButton("No");
 
 	ButtonGroup bigButtonGroup = new ButtonGroup();
 
 	private Font customFont = new Font("Sans Bold", Font.BOLD, 16);
-	private Color backgroundColorGray = new Color(167,173,186);
-	private Color fontColorYellow = new Color(255,220,115);
+	private Color backgroundColorGray = new Color(167, 173, 186);
+	private Color fontColorYellow = new Color(255, 220, 115);
 
 	public MainContent(String aTitle) {
 		super(aTitle, false, false, false, false);
@@ -283,12 +284,12 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		doubleRoom.setFont(customFont);
 		masterRoom.setFont(customFont);
 		vacanciesRoomPriceLabel.setFont(customFont);
-		vacanciesResRoomPriceLabel.setFont(customFont); 
-		
+		vacanciesResRoomPriceLabel.setFont(customFont);
+
 		roomTypeButtonGroup.add(singleRoom);
 		roomTypeButtonGroup.add(doubleRoom);
 		roomTypeButtonGroup.add(masterRoom);
- 
+
 		singleRoom.setBackground(backgroundColorGray);
 		doubleRoom.setBackground(backgroundColorGray);
 		masterRoom.setBackground(backgroundColorGray);
@@ -301,7 +302,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		controlPanel.setLayout(new FlowLayout());
 		vacanciesCheckButton.setBackground(fontColorYellow);
 		vacanciesCheckButton.setSize(200, 30);
-		controlPanel.add(vacanciesCheckButton); 
+		controlPanel.add(vacanciesCheckButton);
 		controlPanel.add(singleRoom);
 		controlPanel.add(doubleRoom);
 		controlPanel.add(masterRoom);
@@ -313,7 +314,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		contentContainer.add(controlPanel);
 
 		vacanciesCheckButton.addActionListener(this);
-		
+
 		yesOptions.setFont(customFont);
 		noOptions.setFont(customFont);
 		extraServiceTaxi.setFont(customFont);
@@ -330,13 +331,13 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		extraServiceBreakfast.setForeground(fontColorYellow);
 
 		yesOptions.setBackground(backgroundColorGray);
-		noOptions.setBackground(backgroundColorGray); 
+		noOptions.setBackground(backgroundColorGray);
 		extraServiceTaxi.setBackground(backgroundColorGray);
 		extraServiceIron.setBackground(backgroundColorGray);
 		extraServiceWakeupCall.setBackground(backgroundColorGray);
 		extraServiceBreakfast.setBackground(backgroundColorGray);
 		vacanciesRoomCB.setBackground(backgroundColorGray);
- 
+
 		servicesButtonGroup.add(yesOptions);
 		servicesButtonGroup.add(noOptions);
 
@@ -352,11 +353,11 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		servicesPanel.setLocation(3, 35);
 		servicesPanel.setVisible(false);
 		contentContainer.add(servicesPanel);
-		
+
 		RoomLabel.setFont(customFont);
 		FirstNameLabel.setFont(customFont);
 		LastNameLabel.setFont(customFont);
-		Address1Label.setFont(customFont); 
+		Address1Label.setFont(customFont);
 		TownLabel.setFont(customFont);
 		contactNoLabel.setFont(customFont);
 		enterRoomNo.setFont(customFont);
@@ -377,7 +378,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		RoomLabel.setForeground(fontColorYellow);
 		FirstNameLabel.setForeground(fontColorYellow);
 		LastNameLabel.setForeground(fontColorYellow);
-		Address1Label.setForeground(fontColorYellow); 
+		Address1Label.setForeground(fontColorYellow);
 		TownLabel.setForeground(fontColorYellow);
 		contactNoLabel.setForeground(fontColorYellow);
 		enterRoomNo.setForeground(fontColorYellow);
@@ -413,11 +414,10 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		detailsPanel.add(TownTF);
 		detailsPanel.add(contactNoLabel);
 		detailsPanel.add(contactNoTF);
-		detailsPanel.add(blankLabel);  
+		detailsPanel.add(blankLabel);
 		detailsPanel.add(servicesLabel);
-		
-		
-		detailsPanel.add(yesOptions); 
+
+		detailsPanel.add(yesOptions);
 		detailsPanel.add(noOptions);
 		detailsPanel.add(blankLabel);
 		detailsPanel.add(confirmButton);
@@ -443,7 +443,6 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		extraServiceIron.addActionListener(listener);
 		extraServiceWakeupCall.addActionListener(listener);
 		extraServiceBreakfast.addActionListener(listener);
- 
 
 		TableofDBContentsCustomer.setPreferredScrollableViewportSize(new Dimension(300, 600));
 		dbContentsPanel1 = new JScrollPane(TableofDBContentsCustomer, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -474,7 +473,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		dbContentsPanel4.setSize(700, 300);
 		dbContentsPanel4.setLocation(477, 80);
 		contentContainer.add(dbContentsPanel4);
-		
+
 		checkRoomLabel.setFont(customFont);
 		resRoomLabel.setFont(customFont);
 		checkFirstNameLabel.setFont(customFont);
@@ -550,7 +549,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 		checkOutConfirmButton.addActionListener(this);
 		checkOutSearchButton.addActionListener(this);
-		 
+
 		checkServiceTaxi.setFont(customFont);
 		checkServiceIron.setFont(customFont);
 		checkServiceWakeupCall.setFont(customFont);
@@ -561,12 +560,12 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		howManyCount.setFont(customFont);
 		resTempLabel.setFont(customFont);
 		myServiceCB.setFont(customFont);
- 
+
 		checkServiceGroup.add(checkServiceTaxi);
 		checkServiceGroup.add(checkServiceIron);
 		checkServiceGroup.add(checkServiceWakeupCall);
 		checkServiceGroup.add(checkServiceBreakfast);
- 
+
 		checkServiceTaxi.setBackground(backgroundColorGray);
 		checkServiceIron.setBackground(backgroundColorGray);
 		checkServiceWakeupCall.setBackground(backgroundColorGray);
@@ -575,7 +574,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 		whatRoomDDown.setBackground(fontColorYellow);
 		howManyCount.setBackground(fontColorYellow);
- 
+
 		checkServiceTaxi.addActionListener(this);
 		checkServiceIron.addActionListener(this);
 		checkServiceWakeupCall.addActionListener(this);
@@ -600,7 +599,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		custServGroupPanel = new JPanel();
 		custServGroupPanel.setLayout(new GridLayout(1, 4));
 		custServGroupPanel.setBackground(backgroundColorGray);
-		custServGroupPanel.setBorder(BorderFactory.createTitledBorder(guiLineBorder, "CUSTOMER SERVICES OPTIONS")); 
+		custServGroupPanel.setBorder(BorderFactory.createTitledBorder(guiLineBorder, "CUSTOMER SERVICES OPTIONS"));
 		custServGroupPanel.add(checkServiceTaxi);
 		custServGroupPanel.add(checkServiceIron);
 		custServGroupPanel.add(checkServiceWakeupCall);
@@ -672,7 +671,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 				dbContentsPanel4.setVisible(false);
 				dbContentsPanel3.setVisible(false);
 				TableModelCustomer.refreshFromDB(sqlStatement);
-			} 
+			}
 
 			if (servicesInfoDatabase.isSelected()) {
 				dbContentsPanel3.setVisible(true);
@@ -716,7 +715,6 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			databasePanal.setVisible(true);
 			servicesPanel.setVisible(false);
 			TableModelRoom.refreshFromDB(sqlStatement);
-
 
 			servicesPanel.setVisible(false);
 		}
@@ -765,7 +763,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			RoomTF.setText("");
 			FirstNameTF.setText("");
 			LastNameTF.setText("");
-			Address1TF.setText(""); 
+			Address1TF.setText("");
 			TownTF.setText("");
 			contactNoTF.setText("");
 		}
@@ -774,7 +772,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 			try {
 
-				String updateTemp0 = "UPDATE room inner join customer inner join amine SET room.roomVacant = 'no', room.cust_id = customer.cust_id, room.am_id = amine.am_id where room_id = " + RoomCB.getSelectedItem() + ";";
+				String updateTemp0 = "UPDATE room inner join customer inner join amine SET room.roomVacant = 'no', room.cust_id = customer.cust_id, room.am_id = amine.am_id where room_id = "
+						+ RoomCB.getSelectedItem() + ";";
 				sqlStatement.executeUpdate(updateTemp0);
 				databaseResultSet = sqlStatement.executeQuery("SELECT * from room ");
 				databaseResultSet.next();
@@ -788,16 +787,21 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			TableModelCustomer.refreshFromDB(sqlStatement);
 
 			try {
-				String updateTemp = "INSERT INTO customer VALUES(" + null + ",'" + RoomCB.getSelectedItem() + "','"	+ FirstNameTF.getText() + "','" + LastNameTF.getText() + "','" + Address1TF.getText() + "','" + TownTF.getText() + "','" + contactNoTF.getText() + "');";
- 
+				String updateTemp = "INSERT INTO customer VALUES(" + null + ",'" + RoomCB.getSelectedItem() + "','"
+						+ FirstNameTF.getText() + "','" + LastNameTF.getText() + "','" + Address1TF.getText() + "','"
+						+ TownTF.getText() + "','" + contactNoTF.getText() + "');";
 
 				if (yesOptions.isSelected()) {
-					String updateTemp3 = "INSERT INTO amine VALUES(" + null + ",'" + taxiString + "','" + ironString + "','" + wakecallString	+ "','" + breakfastString + "','" + RoomCB.getSelectedItem() + "');";
+					String updateTemp3 = "INSERT INTO amine VALUES(" + null + ",'" + taxiString + "','" + ironString
+							+ "','" + wakecallString + "','" + breakfastString + "','" + RoomCB.getSelectedItem()
+							+ "');";
 					sqlStatement.executeUpdate(updateTemp3);
 					TableModelAmine.refreshFromDB(sqlStatement);
 				}
 				if (noOptions.isSelected()) {
-					String updateTemp3 = "INSERT INTO amine VALUES(" + null + ",'" + taxiString + "','" + ironString + "','" + wakecallString	+ "','" + breakfastString + "','" + RoomCB.getSelectedItem() + "');";
+					String updateTemp3 = "INSERT INTO amine VALUES(" + null + ",'" + taxiString + "','" + ironString
+							+ "','" + wakecallString + "','" + breakfastString + "','" + RoomCB.getSelectedItem()
+							+ "');";
 					sqlStatement.executeUpdate(updateTemp3);
 					TableModelAmine.refreshFromDB(sqlStatement);
 				}
@@ -832,10 +836,13 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		}
 		if (target == updateButton) {
 			try {
- 
+
 				if (yesOptions.isSelected()) {
 
-	String updateTemp3 = "UPDATE amine SET " + "Taxi = '" + taxiString + "'," + " Iron = '" + ironString + "'," + " Brecky = '" + breakfastString + "'," + " WakeUpCall = '" + wakecallString + "',  room = '"	+ RoomCB.getSelectedItem() + "' where amine.room = " + RoomCB.getSelectedItem();
+					String updateTemp3 = "UPDATE amine SET " + "Taxi = '" + taxiString + "'," + " Iron = '" + ironString
+							+ "'," + " Brecky = '" + breakfastString + "'," + " WakeUpCall = '" + wakecallString
+							+ "',  room = '" + RoomCB.getSelectedItem() + "' where amine.room = "
+							+ RoomCB.getSelectedItem();
 					sqlStatement.executeUpdate(updateTemp3);
 					databaseResultSet = sqlStatement.executeQuery("SELECT * from amine ");
 					databaseResultSet.next();
@@ -876,8 +883,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			CSVReader reader = null;
 			try {
 				reader = new CSVReader(
-						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"),
-						',', '"', 1);
+						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"), ',',
+						'"', 1);
 				String[] nextLine;
 
 				while ((nextLine = reader.readNext()) != null) {
@@ -918,8 +925,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			CSVReader reader = null;
 			try {
 				reader = new CSVReader(
-						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"),
-						',', '"', 1);
+						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"), ',',
+						'"', 1);
 				String[] nextLine;
 
 				while ((nextLine = reader.readNext()) != null) {
@@ -977,8 +984,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			CSVReader reader = null;
 			try {
 				reader = new CSVReader(
-						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"),
-						',', '"', 1);
+						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"), ',',
+						'"', 1);
 				String[] nextLine;
 
 				while ((nextLine = reader.readNext()) != null) {
@@ -998,14 +1005,13 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			}
 
 		}
-		
+
 		if (target == this.whatRoomDDown) {
 
 			command2 = "select room from amine  where amine.Taxi='yes';";
 			command3 = "select room from amine  where amine.Iron='yes';";
 			command4 = "select room from amine  where amine.WakeUpCall='yes';";
 			command5 = "select room from amine  where amine.Breakfast='yes';";
-
 
 			if (checkServiceTaxi.isSelected()) {
 				command = command2;
@@ -1041,30 +1047,34 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			CSVReader reader = null;
 			try {
 				reader = new CSVReader(
-						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"),
-						',', '"', 1);
+						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"), ',',
+						'"', 1);
 				String[] nextLine;
 
 				while ((nextLine = reader.readNext()) != null) {
 
 					myServiceCB.addItem(nextLine[0]);
 					if (checkServiceTaxi.isSelected()) {
-						resTempLabel.setText("The rooms that want a Taxi are:"+"										");
+						resTempLabel
+								.setText("The rooms that want a Taxi are:" + "										");
 						myServiceCB.setVisible(true);
 					}
 
 					if (checkServiceIron.isSelected()) {
-						resTempLabel.setText("The rooms that want an Iron are:"+"										");
+						resTempLabel
+								.setText("The rooms that want an Iron are:" + "										");
 						myServiceCB.setVisible(true);
 					}
 
 					if (checkServiceWakeupCall.isSelected()) {
-						resTempLabel.setText("The rooms that want a Wakeup Call are:"+"								");
+						resTempLabel
+								.setText("The rooms that want a Wakeup Call are:" + "								");
 						myServiceCB.setVisible(true);
 					}
 
 					if (checkServiceBreakfast.isSelected()) {
-						resTempLabel.setText("The rooms that want Breakfast are:"+"   								");
+						resTempLabel
+								.setText("The rooms that want Breakfast are:" + "   								");
 						myServiceCB.setVisible(true);
 					}
 
@@ -1121,25 +1131,25 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			CSVReader reader = null;
 			try {
 				reader = new CSVReader(
-						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"),
-						',', '"', 1);
+						new FileReader("C:/Users/Keith Bentham/Desktop/JDBC Project/Main_JDBC_Project/Test.csv"), ',',
+						'"', 1);
 				String[] nextLine;
 
 				while ((nextLine = reader.readNext()) != null) {
 
 					if (checkServiceTaxi.isSelected()) {
-						resTempLabel.setText("The number of rooms that want a Taxi : " + nextLine[0] );
+						resTempLabel.setText("The number of rooms that want a Taxi : " + nextLine[0]);
 					}
 
 					if (checkServiceIron.isSelected()) {
-						resTempLabel.setText("The number of rooms that want an Iron are: " + nextLine[0] );
+						resTempLabel.setText("The number of rooms that want an Iron are: " + nextLine[0]);
 					}
 
 					if (checkServiceWakeupCall.isSelected()) {
-						resTempLabel.setText("The number of rooms that want a Wakeup Call are: " + nextLine[0] );
+						resTempLabel.setText("The number of rooms that want a Wakeup Call are: " + nextLine[0]);
 					}
 					if (checkServiceBreakfast.isSelected()) {
-						resTempLabel.setText("The number of rooms that want breakfast are: " + nextLine[0] );
+						resTempLabel.setText("The number of rooms that want breakfast are: " + nextLine[0]);
 					}
 				}
 			}
@@ -1157,6 +1167,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 		}
 	}
+
 	private void writeToFile(ResultSet rs) {
 		try {
 			System.out.println("In writeToFile");

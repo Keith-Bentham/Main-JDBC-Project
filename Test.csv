@@ -1,2 +1,1 @@
-count(*),
-7,
+roomNo,roomType,roomPrice,firstName,lastName,address1,town,contactNo,roomVacant,

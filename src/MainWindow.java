@@ -18,19 +18,15 @@ public class MainWindow extends JFrame implements ActionListener {
 
 		exitItem = new JMenuItem("Exit");
 		New = new JMenuItem("New");
-
 		fileMenu.add(exitItem);
 		fileMenu.add(New);
 		menuBar.add(fileMenu);
 		setJMenuBar(menuBar);
-
 		exitItem.addActionListener(this);
 		New.addActionListener(this);
 
 		MainContent c = new MainContent("Keith's B&B");
-
 		getContentPane().add(c);
-
 		setSize(1204, 600);
 		setVisible(true);
 	}
