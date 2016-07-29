@@ -954,17 +954,17 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 			if (singleRoom.isSelected()) {
 				vacanciesResRoomTypeLabel.setText("Single");
-				vacanciesResRoomPriceLabel.setText("€39.99");
+				vacanciesResRoomPriceLabel.setText("€59.99");
 				command = command1;
 			}
 			if (doubleRoom.isSelected()) {
 				vacanciesResRoomTypeLabel.setText("Double");
-				vacanciesResRoomPriceLabel.setText("€49.99");
+				vacanciesResRoomPriceLabel.setText("€79.99");
 				command = command2;
 			}
 			if (masterRoom.isSelected()) {
 				vacanciesResRoomTypeLabel.setText("Master");
-				vacanciesResRoomPriceLabel.setText("€59.99");
+				vacanciesResRoomPriceLabel.setText("€99.99");
 				command = command3;
 			}
 
