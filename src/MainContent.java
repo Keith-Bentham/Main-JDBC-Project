@@ -85,7 +85,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JLabel contactNoLabel = new JLabel("Contact Num:");
 	private JLabel enterRoomNo = new JLabel("Select Room Number:");
 	private JLabel servicesLabel = new JLabel("Extra Service:");
-	private JLabel blankLabel = new JLabel(" 			");
+	private JLabel blankLabel = new JLabel(" ");
 
 	private JLabel checkRoomLabel = new JLabel("Room:");
 	private JLabel checkFirstNameLabel = new JLabel("FirstName:");
