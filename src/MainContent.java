@@ -56,7 +56,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 	private Container contentContainer;
 
-	private JPanel detailsPanel;
+	private JPanel dataEntryPanel;
 	private JPanel vacanciesPanel;
 	private JPanel checkOutPanel;
 	private JPanel controlPanel;
@@ -82,12 +82,13 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JLabel LastNameLabel = new JLabel("LastName:");
 	private JLabel Address1Label = new JLabel("Address1:");
 	private JLabel TownLabel = new JLabel("Town:");
-	private JLabel contactNoLabel = new JLabel("Contact Num:");
-	private JLabel enterRoomNo = new JLabel("Select Room Number:");
+	private JLabel contactNoLabel = new JLabel("Contact Num:");	
 	private JLabel servicesLabel = new JLabel("Extra Service:");
+	
 	private JLabel blankLabel = new JLabel(" ");
-
-	private JLabel checkRoomLabel = new JLabel("Room:");
+private JLabel enterRoomNo = new JLabel("Select Room Number:");
+	
+private JLabel checkRoomLabel = new JLabel("Room:");
 	private JLabel checkFirstNameLabel = new JLabel("FirstName:");
 	private JLabel checkLastNameLabel = new JLabel("LastName:");
 	private JLabel checkAddress1Label = new JLabel("Address1:");
@@ -239,7 +240,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		servicesInfoDatabase.addActionListener(listener);
 
 		databasePanal = new JPanel();
-		databasePanal.setLayout(new GridLayout(1, 4));
+		databasePanal.setLayout(new GridLayout(1, 3));
 		databasePanal.setBackground(backgroundColorGray);
 		databasePanal.setBorder(BorderFactory.createTitledBorder(guiLineBorder, "Choose Database"));
 		databasePanal.add(roomInfoDatabase);
@@ -267,7 +268,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		vacanciesPanel = new JPanel();
 		vacanciesPanel.setLayout(new GridLayout(3, 2));
 		vacanciesPanel.setBackground(backgroundColorGray);
-		vacanciesPanel.setBorder(BorderFactory.createTitledBorder(guiLineBorder, "VACANCIES"));
+		vacanciesPanel.setBorder(BorderFactory.createTitledBorder(guiLineBorder, "Vacancies"));
 		vacanciesPanel.add(vacanciesRoomLabel);
 		vacanciesPanel.add(vacanciesRoomCB);
 		vacanciesPanel.add(vacanciesRoomTypeLabel);
@@ -398,37 +399,37 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		clearButton.setSize(100, 30);
 		editButton.setSize(100, 30);
 
-		detailsPanel = new JPanel();
-		detailsPanel.setLayout(new GridLayout(13, 2));
-		detailsPanel.setBackground(backgroundColorGray);
-		detailsPanel.setBorder(BorderFactory.createTitledBorder(guiLineBorder, "Customer Data Entry"));
-		detailsPanel.add(RoomLabel);
-		detailsPanel.add(RoomCB);
-		detailsPanel.add(FirstNameLabel);
-		detailsPanel.add(FirstNameTF);
-		detailsPanel.add(LastNameLabel);
-		detailsPanel.add(LastNameTF);
-		detailsPanel.add(Address1Label);
-		detailsPanel.add(Address1TF);
-		detailsPanel.add(TownLabel);
-		detailsPanel.add(TownTF);
-		detailsPanel.add(contactNoLabel);
-		detailsPanel.add(contactNoTF);
-		detailsPanel.add(blankLabel);
-		detailsPanel.add(servicesLabel);
+		dataEntryPanel = new JPanel();
+		dataEntryPanel.setLayout(new GridLayout(13, 2));
+		dataEntryPanel.setBackground(backgroundColorGray);
+		dataEntryPanel.setBorder(BorderFactory.createTitledBorder(guiLineBorder, "Customer Data Entry"));
+		dataEntryPanel.add(RoomLabel);
+		dataEntryPanel.add(RoomCB);
+		dataEntryPanel.add(FirstNameLabel);
+		dataEntryPanel.add(FirstNameTF);
+		dataEntryPanel.add(LastNameLabel);
+		dataEntryPanel.add(LastNameTF);
+		dataEntryPanel.add(Address1Label);
+		dataEntryPanel.add(Address1TF);
+		dataEntryPanel.add(TownLabel);
+		dataEntryPanel.add(TownTF);
+		dataEntryPanel.add(contactNoLabel);
+		dataEntryPanel.add(contactNoTF);
+		dataEntryPanel.add(blankLabel);
+		dataEntryPanel.add(servicesLabel);
 
-		detailsPanel.add(yesOptions);
-		detailsPanel.add(noOptions);
-		detailsPanel.add(blankLabel);
-		detailsPanel.add(confirmButton);
-		detailsPanel.add(updateButton);
-		detailsPanel.add(deleteButton);
-		detailsPanel.add(clearButton);
-		detailsPanel.add(editButton);
-		detailsPanel.setSize(300, 347);
-		detailsPanel.setLocation(177, 35);
-		detailsPanel.setVisible(false);
-		contentContainer.add(detailsPanel);
+		dataEntryPanel.add(yesOptions);
+		dataEntryPanel.add(noOptions);
+		dataEntryPanel.add(blankLabel);
+		dataEntryPanel.add(confirmButton);
+		dataEntryPanel.add(updateButton);
+		dataEntryPanel.add(deleteButton);
+		dataEntryPanel.add(clearButton);
+		dataEntryPanel.add(editButton);
+		dataEntryPanel.setSize(300, 347);
+		dataEntryPanel.setLocation(177, 35);
+		dataEntryPanel.setVisible(false);
+		contentContainer.add(dataEntryPanel);
 
 		confirmButton.addActionListener(this);
 		updateButton.addActionListener(this);
@@ -521,7 +522,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		checkOutPanel = new JPanel();
 		checkOutPanel.setLayout(new GridLayout(10, 2));
 		checkOutPanel.setBackground(backgroundColorGray);
-		checkOutPanel.setBorder(BorderFactory.createTitledBorder(guiLineBorder, "CUSTOMER CHECKOUT DETAILS"));
+		checkOutPanel.setBorder(BorderFactory.createTitledBorder(guiLineBorder, "Customer CheckOut"));
 		checkOutPanel.add(checkRoomLabel);
 		checkOutPanel.add(resRoomLabel);
 		checkOutPanel.add(checkFirstNameLabel);
@@ -688,7 +689,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 		if (target == homeButton) {
 			controlPanel.setVisible(true);
-			detailsPanel.setVisible(false);
+			dataEntryPanel.setVisible(false);
 			checkOutPanel.setVisible(false);
 			dbContentsPanel1.setVisible(false);
 			dbContentsPanel3.setVisible(false);
@@ -702,7 +703,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 		if (target == checkInButton) {
 			controlPanel.setVisible(false);
-			detailsPanel.setVisible(true);
+			dataEntryPanel.setVisible(true);
 			checkOutPanel.setVisible(false);
 			vacanciesPanel.setVisible(false);
 			custServPanel.setVisible(false);
@@ -719,7 +720,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		if (target == checkOutButton) {
 			checkOutPanel.setVisible(true);
 			controlPanel.setVisible(false);
-			detailsPanel.setVisible(false);
+			dataEntryPanel.setVisible(false);
 			dbContentsPanel1.setVisible(false);
 			dbContentsPanel3.setVisible(false);
 			dbContentsPanel4.setVisible(false);
@@ -745,7 +746,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 		if (target == servicesButton) {
 			controlPanel.setVisible(false);
-			detailsPanel.setVisible(false);
+			dataEntryPanel.setVisible(false);
 			checkOutPanel.setVisible(false);
 			dbContentsPanel1.setVisible(false);
 			dbContentsPanel3.setVisible(false);

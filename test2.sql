@@ -19,12 +19,9 @@ CREATE TABLE customer (
 
 SELECT 'INSERTING DATA INTO DATABASE' as 'INFO';
 
-INSERT INTO customer VALUES ( null, '1', 'Amy', 'Kenny', 'long Road', 'Athlone', '08712345678');
-INSERT INTO customer VALUES ( null, '3','Ciara', 'Kelly', '65 oldtown', 'Athlone','085345323');
-INSERT INTO customer VALUES ( null, '5','Emma', 'Fallon', 'Arcadia', 'Athlone', '0878998766');
-INSERT INTO customer VALUES ( null, '2','Anita', 'Adams', 'Whitepark', 'Athlone', '085987654321');
-INSERT INTO customer VALUES ( null, '8','Jim', 'Jones', 'Main St', 'Roscommon', '0877897897');
-INSERT INTO customer VALUES ( null, '13','Colm', 'Cummins', 'Cam', 'Brideswell', '0876534276');
+INSERT INTO customer VALUES ( null, '2', 'Keith', 'Bentham', 'Tara', 'Navan', '0838008899');
+INSERT INTO customer VALUES ( null, '4','John', 'Castles', 'Athboy', 'Dublin','0486848798');
+INSERT INTO customer VALUES ( null, '6','Emer', 'Monaghan', 'Kells', 'Meath', '0856507789'); 
 
 
 
@@ -76,21 +73,21 @@ CREATE TABLE room (
     PRIMARY KEY (room_id)
 );
 
-INSERT INTO room VALUES ( null, '1', 'Single',39.99,'no',1,1);
-INSERT INTO room VALUES ( null, '2', 'Double',49.99,'no',4,4);
-INSERT INTO room VALUES ( null, '3', 'Master',59.99,'no',2,2);
-INSERT INTO room VALUES ( null, '4', 'Single',39.99,'yes',null,null);
-INSERT INTO room VALUES ( null, '5', 'Single',39.99,'no',3,3);
-INSERT INTO room VALUES ( null, '6', 'Master',59.99,'yes',null,null);
-INSERT INTO room VALUES ( null, '7', 'Single',39.99,'yes',null,null);
-INSERT INTO room VALUES ( null, '8', 'Double',49.99,'no',5,5);
-INSERT INTO room VALUES ( null, '9', 'Double',49.99,'yes',null,null);
-INSERT INTO room VALUES ( null, '10', 'Double',49.99,'yes',null,null);
-INSERT INTO room VALUES ( null, '11', 'Double',49.99,'yes',null,null);
-INSERT INTO room VALUES ( null, '12', 'Single',39.99,'yes',null,null);
-INSERT INTO room VALUES ( null, '13', 'Double',49.99,'no',6,6);
-INSERT INTO room VALUES ( null, '14', 'Single',39.99,'yes',null,null);
-INSERT INTO room VALUES ( null, '15', 'Double',49.99,'yes',null,null);
+INSERT INTO room VALUES ( null, '1', 'Single',59.99,'no',1,1);
+INSERT INTO room VALUES ( null, '2', 'Double',89.99,'no',4,4);
+INSERT INTO room VALUES ( null, '3', 'Master',99.99,'no',2,2);
+INSERT INTO room VALUES ( null, '4', 'Single',59.99,'yes',null,null);
+INSERT INTO room VALUES ( null, '5', 'Single',59.99,'no',3,3);
+INSERT INTO room VALUES ( null, '6', 'Master',99.99,'yes',null,null);
+INSERT INTO room VALUES ( null, '7', 'Single',59.99,'yes',null,null);
+INSERT INTO room VALUES ( null, '8', 'Double',79.99,'no',5,5);
+INSERT INTO room VALUES ( null, '9', 'Double',79.99,'yes',null,null);
+INSERT INTO room VALUES ( null, '10', 'Double',79.99,'yes',null,null);
+INSERT INTO room VALUES ( null, '11', 'Double',79.99,'yes',null,null);
+INSERT INTO room VALUES ( null, '12', 'Single',59.99,'yes',null,null);
+INSERT INTO room VALUES ( null, '13', 'Double',79.99,'no',6,6);
+INSERT INTO room VALUES ( null, '14', 'Single',59.99,'yes',null,null);
+INSERT INTO room VALUES ( null, '15', 'Double',79.99,'yes',null,null);
 
 SELECT 
     *
