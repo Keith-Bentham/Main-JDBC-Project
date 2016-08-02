@@ -42,7 +42,6 @@ class QueryTableModelCustomer extends AbstractTableModel {
 		try {
 			rs = stmt.executeQuery("SELECT * FROM customer");
 			ResultSetMetaData meta = rs.getMetaData();
-
 			colCount = meta.getColumnCount();
 			headers = new String[colCount];
 

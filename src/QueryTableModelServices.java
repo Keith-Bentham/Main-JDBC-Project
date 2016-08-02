@@ -42,7 +42,6 @@ class QueryTableModelServices extends AbstractTableModel {
 		try {
 			rs = stmt.executeQuery("SELECT * FROM service");
 			ResultSetMetaData meta = rs.getMetaData();
-
 			colCount = meta.getColumnCount();
 			headers = new String[colCount];
 

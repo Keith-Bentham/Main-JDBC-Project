@@ -21,7 +21,7 @@ public class MainWindow extends JFrame implements ActionListener {
 		setJMenuBar(menuBar);
 		exitItem.addActionListener(this); 
 
-		MainContent c = new MainContent("Keith's B&B");
+		MainContent c = new MainContent("Keiths B&B");
 		getContentPane().add(c);
 		setSize(1202, 600);
 		setVisible(true);
