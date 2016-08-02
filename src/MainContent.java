@@ -257,7 +257,6 @@ private JLabel checkRoomLabel = new JLabel("Room:");
 		vacanciesResRoomTypeLabel.setFont(customFont);
 		vacanciesRoomPriceLabel.setFont(customFont);
 		vacanciesResRoomPriceLabel.setFont(customFont);
-
 		vacanciesRoomLabel.setForeground(fontColorYellow);
 		vacanciesResRoomLabel.setForeground(fontColorYellow);
 		vacanciesRoomTypeLabel.setForeground(fontColorYellow);
@@ -323,14 +322,12 @@ private JLabel checkRoomLabel = new JLabel("Room:");
 		extraServiceWakeupCall.setFont(customFont);
 		extraServiceBreakfast.setFont(customFont);
 		vacanciesRoomCB.setFont(customFont);
-
 		yesOptions.setForeground(fontColorYellow);
 		noOptions.setForeground(fontColorYellow);
 		extraServiceTaxi.setForeground(fontColorYellow);
 		extraServiceIron.setForeground(fontColorYellow);
 		extraServiceWakeupCall.setForeground(fontColorYellow);
 		extraServiceBreakfast.setForeground(fontColorYellow);
-
 		yesOptions.setBackground(backgroundColorGray);
 		noOptions.setBackground(backgroundColorGray);
 		extraServiceTaxi.setBackground(backgroundColorGray);
@@ -368,14 +365,12 @@ private JLabel checkRoomLabel = new JLabel("Room:");
 		deleteButton.setFont(customFont);
 		clearButton.setFont(customFont);
 		editButton.setFont(customFont);
-
 		RoomCB.setFont(customFont);
 		FirstNameTF.setFont(customFont);
 		LastNameTF.setFont(customFont);
 		Address1TF.setFont(customFont);
 		TownTF.setFont(customFont);
 		contactNoTF.setFont(customFont);
-
 		RoomLabel.setForeground(fontColorYellow);
 		FirstNameLabel.setForeground(fontColorYellow);
 		LastNameLabel.setForeground(fontColorYellow);
@@ -384,14 +379,12 @@ private JLabel checkRoomLabel = new JLabel("Room:");
 		contactNoLabel.setForeground(fontColorYellow);
 		enterRoomNo.setForeground(fontColorYellow);
 		servicesLabel.setForeground(fontColorYellow);
-
 		confirmButton.setBackground(fontColorYellow);
 		updateButton.setBackground(fontColorYellow);
 		exportButton.setBackground(fontColorYellow);
 		deleteButton.setBackground(fontColorYellow);
 		clearButton.setBackground(fontColorYellow);
 		editButton.setBackground(fontColorYellow);
-
 		confirmButton.setSize(100, 30);
 		updateButton.setSize(100, 30);
 		exportButton.setSize(100, 30);
