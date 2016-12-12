@@ -44,7 +44,6 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	String command3 = null;
 	String command4 = null;
 	String command5 = null;
-
 	String taxiString = null;
 	String ironString = null;
 	String breakfastString = null;
@@ -53,9 +52,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private Connection databaseConnection = null;
 	private Statement sqlStatement = null;
 	private ResultSet databaseResultSet = null;
-
 	private Container contentContainer;
-
 	private JPanel dataEntryPanel;
 	private JPanel vacanciesPanel;
 	private JPanel checkOutPanel;
@@ -67,16 +64,13 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JScrollPane dbContentsPanel1;
 	private JScrollPane dbContentsPanel3;
 	private JScrollPane dbContentsPanel4;
-
 	private Border guiLineBorder;
-
 	private JLabel vacanciesRoomLabel = new JLabel("Room Number");
 	private JLabel vacanciesResRoomLabel = new JLabel();
 	private JLabel vacanciesRoomTypeLabel = new JLabel("Room Type");
 	private JLabel vacanciesResRoomTypeLabel = new JLabel("");
 	private JLabel vacanciesRoomPriceLabel = new JLabel("Room Price");
 	private JLabel vacanciesResRoomPriceLabel = new JLabel("");
-
 	private JLabel RoomLabel = new JLabel("Room:");
 	private JLabel FirstNameLabel = new JLabel("FirstName:");
 	private JLabel LastNameLabel = new JLabel("LastName:");
@@ -84,10 +78,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JLabel TownLabel = new JLabel("Town:");
 	private JLabel contactNoLabel = new JLabel("Contact Num:");	
 	private JLabel servicesLabel = new JLabel("Extra Service:");
-	
 	private JLabel blankLabel = new JLabel(" ");
 	private JLabel enterRoomNo = new JLabel("Select Room Number:");
-	
 	private JLabel checkRoomLabel = new JLabel("Room:");
 	private JLabel checkFirstNameLabel = new JLabel("FirstName:");
 	private JLabel checkLastNameLabel = new JLabel("LastName:");
@@ -96,7 +88,6 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JLabel checkcontactNoLabel = new JLabel("Contact Number:");
 	private JLabel checkRoomTypeLabel = new JLabel("Room Type:");
 	private JLabel checkRoomPriceLabel = new JLabel("Room Price:");
-
 	private JLabel resRoomLabel = new JLabel();
 	private JLabel resFirstNameLabel = new JLabel();
 	private JLabel resLastNameLabel = new JLabel();
@@ -106,56 +97,46 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JLabel resRoomTypeLabel = new JLabel();
 	private JLabel resRoomPriceLabel = new JLabel();
 	private JLabel resTempLabel = new JLabel();
-
 	private JTextField RoomTF = new JTextField(10);
 	private JTextField FirstNameTF = new JTextField(10);
 	private JTextField LastNameTF = new JTextField(10);
 	private JTextField Address1TF = new JTextField(10);
 	private JTextField TownTF = new JTextField(10);
 	private JTextField contactNoTF = new JTextField(10);
-
 	private static QueryTableModelCustomer TableModelCustomer = new QueryTableModelCustomer();
 	private static QueryTableModelServices TableModelServices = new QueryTableModelServices();
 	private static QueryTableModelRoom TableModelRoom = new QueryTableModelRoom();
 	private JTable TableofDBContentsCustomer = new JTable(TableModelCustomer);
 	private JTable TableofDBContentsAmine = new JTable(TableModelServices);
 	private JTable TableofDBContentsRoom = new JTable(TableModelRoom);
-
 	private JButton updateButton = new JButton("Update");
 	private JButton confirmButton = new JButton("Confirm");
 	private JButton exportButton = new JButton("Export");
 	private JButton deleteButton = new JButton("Delete");
 	private JButton clearButton = new JButton("Clear");
 	private JButton editButton = new JButton("Edit");
-
 	private JButton homeButton = new JButton("Home");
 	private JButton checkInButton = new JButton("Check In");
 	private JButton checkOutButton = new JButton("Check Out");
 	private JButton servicesButton = new JButton("Customer Services");
-
 	private JButton vacanciesCheckButton = new JButton("Check For Vacancies");
 	private JButton checkOutConfirmButton = new JButton("Confirm");
 	private JButton checkOutSearchButton = new JButton("Search");
-
 	private JButton whatRoomDDown = new JButton("What Room's");
 	private JButton howManyCount = new JButton("How Many");
-
 	private JRadioButton extraServiceTaxi = new JRadioButton("Taxi");
 	private JRadioButton extraServiceIron = new JRadioButton("Iron");
 	private JRadioButton extraServiceWakeupCall = new JRadioButton("Wakeup Call");
 	private JRadioButton extraServiceBreakfast = new JRadioButton("Breakfast");
-
 	private ButtonGroup roomTypeButtonGroup = new ButtonGroup();
 	private JRadioButton singleRoom = new JRadioButton("Single");
 	private JRadioButton doubleRoom = new JRadioButton("Double");
 	private JRadioButton masterRoom = new JRadioButton("Master");
-
 	private ButtonGroup checkServiceGroup = new ButtonGroup();
 	private JRadioButton checkServiceTaxi = new JRadioButton("Taxi");
 	private JRadioButton checkServiceIron = new JRadioButton("Iron");
 	private JRadioButton checkServiceWakeupCall = new JRadioButton("Wakeup Call");
 	private JRadioButton checkServiceBreakfast = new JRadioButton("Breakfast");
-
 	private ButtonGroup databaseButtonGroup = new ButtonGroup();
 	private JRadioButton roomInfoDatabase = new JRadioButton("Room DB");
 	private JRadioButton customerInfoDatabase = new JRadioButton("Customer DB");
@@ -171,11 +152,9 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	private JComboBox myServiceCB = new JComboBox();
 
 	JTextPane custDetPane = new JTextPane();
-
 	ButtonGroup servicesButtonGroup = new ButtonGroup();
 	JRadioButton yesOptions = new JRadioButton("Yes");
 	JRadioButton noOptions = new JRadioButton("No");
-
 	ButtonGroup bigButtonGroup = new ButtonGroup();
 
 	private Font customFont = new Font("Sans Bold", Font.BOLD, 16);
@@ -185,37 +164,30 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	public MainContent(String aTitle) {
 		super(aTitle, false, false, false, false);
 		setEnabled(true);
-
 		initiate_db_conn();
 		contentContainer = getContentPane();
 		contentContainer.setLayout(null);
 		contentContainer.setBackground(backgroundColorGray);
-
 		homeButton.setBackground(fontColorYellow);
 		checkInButton.setBackground(fontColorYellow);
 		checkOutButton.setBackground(fontColorYellow);
 		servicesButton.setBackground(fontColorYellow);
-
 		homeButton.setLocation(0, 3);
 		checkInButton.setLocation(153, 3);
 		checkOutButton.setLocation(306, 3);
 		servicesButton.setLocation(456, 3);
-
 		homeButton.setSize(150, 30);
 		checkInButton.setSize(150, 30);
 		checkOutButton.setSize(150, 30);
 		servicesButton.setSize(190, 30);
-
 		homeButton.setFont(customFont);
 		checkInButton.setFont(customFont);
 		checkOutButton.setFont(customFont);
 		servicesButton.setFont(customFont);
-
 		homeButton.addActionListener(this);
 		checkInButton.addActionListener(this);
 		checkOutButton.addActionListener(this);
 		servicesButton.addActionListener(this);
-
 		contentContainer.add(homeButton);
 		contentContainer.add(checkInButton);
 		contentContainer.add(checkOutButton);
@@ -230,11 +202,9 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		roomInfoDatabase.setBackground(backgroundColorGray);
 		customerInfoDatabase.setBackground(backgroundColorGray);
 		servicesInfoDatabase.setBackground(backgroundColorGray);
-
 		roomInfoDatabase.setFont(customFont);
 		customerInfoDatabase.setFont(customFont);
 		servicesInfoDatabase.setFont(customFont);
-
 		roomInfoDatabase.addActionListener(listener);
 		customerInfoDatabase.addActionListener(listener);
 		servicesInfoDatabase.addActionListener(listener);
@@ -261,9 +231,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		vacanciesResRoomLabel.setForeground(fontColorYellow);
 		vacanciesRoomTypeLabel.setForeground(fontColorYellow);
 		vacanciesRoomPriceLabel.setForeground(fontColorYellow);
-
 		vacanciesRoomCB.setPrototypeDisplayValue("XXX");
-
 		vacanciesPanel = new JPanel();
 		vacanciesPanel.setLayout(new GridLayout(3, 2));
 		vacanciesPanel.setBackground(backgroundColorGray);
@@ -278,7 +246,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		vacanciesPanel.setLocation(450, 70);
 		vacanciesPanel.setVisible(false);
 		contentContainer.add(vacanciesPanel);
-
+		
 		vacanciesCheckButton.setFont(customFont);
 		singleRoom.setFont(customFont);
 		doubleRoom.setFont(customFont);
@@ -293,7 +261,6 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		singleRoom.setBackground(backgroundColorGray);
 		doubleRoom.setBackground(backgroundColorGray);
 		masterRoom.setBackground(backgroundColorGray);
-
 		singleRoom.addActionListener(this);
 		doubleRoom.addActionListener(this);
 		masterRoom.addActionListener(this);
@@ -335,10 +302,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		extraServiceWakeupCall.setBackground(backgroundColorGray);
 		extraServiceBreakfast.setBackground(backgroundColorGray);
 		vacanciesRoomCB.setBackground(backgroundColorGray);
-
 		servicesButtonGroup.add(yesOptions);
 		servicesButtonGroup.add(noOptions);
-
 		servicesPanel = new JPanel();
 		servicesPanel.setLayout(new GridLayout(4, 1));
 		servicesPanel.setBackground(backgroundColorGray);
@@ -351,7 +316,6 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		servicesPanel.setLocation(3, 35);
 		servicesPanel.setVisible(false);
 		contentContainer.add(servicesPanel);
-
 		RoomLabel.setFont(customFont);
 		FirstNameLabel.setFont(customFont);
 		LastNameLabel.setFont(customFont);

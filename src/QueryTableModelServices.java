@@ -19,23 +19,18 @@ class QueryTableModelServices extends AbstractTableModel {
 	public QueryTableModelServices() {
 		modelData = new Vector();
 	}
-
 	public String getColumnName(int i) {
 		return headers[i];
 	}
-
 	public int getColumnCount() {
 		return colCount;
 	}
-
 	public int getRowCount() {
 		return modelData.size();
 	}
-
 	public Object getValueAt(int row, int col) {
 		return ((String[]) modelData.elementAt(row))[col];
 	}
-
 	public void refreshFromDB(Statement stmt1) {
 		modelData = new Vector();
 		stmt = stmt1;
