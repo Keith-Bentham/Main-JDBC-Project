@@ -591,17 +591,14 @@ public class MainContent extends JInternalFrame implements ActionListener {
 
 			if (yesOptions.isSelected()) {
 				servicesPanel.setVisible(true);
-
 				if (extraServiceTaxi.isSelected()) {
 					taxiString = "yes";
 				} else
 					taxiString = "no";
-
 				if (extraServiceIron.isSelected()) {
 					ironString = "yes";
 				} else
 					ironString = "no";
-
 				if (extraServiceWakeupCall.isSelected()) {
 					wakecallString = "yes";
 				} else
@@ -641,7 +638,6 @@ public class MainContent extends JInternalFrame implements ActionListener {
 	};
 
 	public void actionPerformed(ActionEvent e) {
-
 		Object target = e.getSource();
 
 		if (target == homeButton) {
@@ -655,7 +651,6 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			custServPanel.setVisible(false);
 			databasePanal.setVisible(false);
 			servicesPanel.setVisible(false);
-
 		}
 
 		if (target == checkInButton) {
@@ -670,7 +665,6 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			databasePanal.setVisible(true);
 			servicesPanel.setVisible(false);
 			TableModelRoom.refreshFromDB(sqlStatement);
-
 			servicesPanel.setVisible(false);
 		}
 
@@ -823,7 +817,6 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		}
 
 		if (target == this.checkOutSearchButton) {
-
 			command = "select roomNo, roomType, roomPrice, firstName, lastName, address1, town, contactNo, roomVacant from room inner join customer where room.room_id="
 					+ myRoomCB.getSelectedItem() + " AND customer.room=" + myRoomCB.getSelectedItem() + ";";
 
@@ -841,9 +834,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 						new FileReader("C:/Users/keith.bentham/Documents/Java/Java Workspace/Main-JDBC-Project/Test.csv"), ',',
 						'"', 1);
 				String[] nextLine;
-
 				while ((nextLine = reader.readNext()) != null) {
-
 					resRoomLabel.setText(nextLine[0]);
 					resFirstNameLabel.setText(nextLine[3]);
 					resLastNameLabel.setText(nextLine[4]);
@@ -853,7 +844,6 @@ public class MainContent extends JInternalFrame implements ActionListener {
 					resRoomTypeLabel.setText(nextLine[1]);
 					resRoomPriceLabel.setText("€" + nextLine[2]);
 					System.out.println(nextLine[8]);
-
 				}
 			} catch (Exception en) {
 				en.printStackTrace();
@@ -883,15 +873,12 @@ public class MainContent extends JInternalFrame implements ActionListener {
 						new FileReader("C:/Users/keith.bentham/Documents/Java/Java Workspace/Main-JDBC-Project/Test.csv"), ',',
 						'"', 1);
 				String[] nextLine;
-
 				while ((nextLine = reader.readNext()) != null) {
-
 					FirstNameTF.setText(nextLine[0]);
 					LastNameTF.setText(nextLine[1]);
 					Address1TF.setText(nextLine[2]);
 					TownTF.setText(nextLine[3]);
 					contactNoTF.setText(nextLine[4]);
-
 				}
 			} catch (Exception en) {
 				en.printStackTrace();
@@ -905,7 +892,6 @@ public class MainContent extends JInternalFrame implements ActionListener {
 		}
 
 		if (target == this.vacanciesCheckButton) {
-
 			command1 = "select roomNo from room where room.roomVacant='yes' AND room.roomType='Single';";
 			command2 = "select roomNo from room where room.roomVacant='yes'AND room.roomType='Double';";
 			command3 = "select roomNo from room where room.roomVacant='yes'AND room.roomType='Master';";
@@ -927,7 +913,6 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			}
 
 			try {
-
 				databaseResultSet = sqlStatement.executeQuery(command);
 				writeToFile(databaseResultSet);
 				vacanciesRoomCB.removeAllItems();
@@ -942,11 +927,8 @@ public class MainContent extends JInternalFrame implements ActionListener {
 						new FileReader("C:/Users/keith.bentham/Documents/Java/Java Workspace/Main-JDBC-Project/Test.csv"), ',',
 						'"', 1);
 				String[] nextLine;
-
 				while ((nextLine = reader.readNext()) != null) {
-
 					vacanciesRoomCB.addItem(nextLine[0]);
-
 					System.out.println(nextLine[0]);
 				}
 			} catch (Exception en) {
@@ -1000,36 +982,30 @@ public class MainContent extends JInternalFrame implements ActionListener {
 			}
 
 			CSVReader reader = null;
-			try {
-				reader = new CSVReader(
+			try {reader = new CSVReader(
 						new FileReader("C:/Users/keith.bentham/Documents/Java/Java Workspace/Main-JDBC-Project/Test.csv"), ',',
 						'"', 1);
 				String[] nextLine;
 
 				while ((nextLine = reader.readNext()) != null) {
-
 					myServiceCB.addItem(nextLine[0]);
 					if (checkServiceTaxi.isSelected()) {
-						resTempLabel
-								.setText("The rooms that want a Taxi are:" + "										");
+						resTempLabel.setText("The rooms that want a Taxi are:" + "										");
 						myServiceCB.setVisible(true);
 					}
 
 					if (checkServiceIron.isSelected()) {
-						resTempLabel
-								.setText("The rooms that want an Iron are:" + "										");
+						resTempLabel.setText("The rooms that want an Iron are:" + "										");
 						myServiceCB.setVisible(true);
 					}
 
 					if (checkServiceWakeupCall.isSelected()) {
-						resTempLabel
-								.setText("The rooms that want a Wakeup Call are:" + "								");
+						resTempLabel.setText("The rooms that want a Wakeup Call are:" + "								");
 						myServiceCB.setVisible(true);
 					}
 
 					if (checkServiceBreakfast.isSelected()) {
-						resTempLabel
-								.setText("The rooms that want Breakfast are:" + "   								");
+						resTempLabel.setText("The rooms that want Breakfast are:" + "   								");
 						myServiceCB.setVisible(true);
 					}
 
@@ -1047,9 +1023,7 @@ public class MainContent extends JInternalFrame implements ActionListener {
 				} catch (IOException en) {
 					en.printStackTrace();
 				}
-
 			}
-
 		}
 
 		if (target == this.howManyCount) {

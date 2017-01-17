@@ -11,16 +11,13 @@ public class MainWindow extends JFrame implements ActionListener {
 	
 	public MainWindow() {
 		super("");
-
 		JMenuBar menuBar = new JMenuBar();
 		JMenu fileMenu = new JMenu("Exit");
-
 		exitItem = new JMenuItem("Exit"); 
 		fileMenu.add(exitItem); 
 		menuBar.add(fileMenu);
 		setJMenuBar(menuBar);
 		exitItem.addActionListener(this); 
-
 		MainContent c = new MainContent("Keiths B&B");
 		getContentPane().add(c);
 		setSize(1202, 600);
